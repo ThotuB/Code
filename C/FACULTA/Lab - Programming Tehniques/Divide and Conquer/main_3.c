@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define ITER 6  // no of iterations
-#define ORDER 3 // order means something else in my case ( n-th order polynomial ) - don't go over 5 with many iterations
+#define ITER 7  // no of iterations
+#define ORDER 5 // order means something else in my case ( n-th order polynomial ) - don't go over 5 with many iterations
 
 #define CENTER_X 1280
 #define CENTER_Y 620

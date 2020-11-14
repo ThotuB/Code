@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "map": "cpp",
+        "xstring": "cpp",
+        "utility": "cpp",
+        "iostream": "cpp",
+        "vector": "cpp"
+    },
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    }
+}
