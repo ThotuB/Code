@@ -34,10 +34,14 @@ interface Carriage {
     int getPackageCapacity();
 }
 
-class PassengersCarA implements Carriage {
+class PassengersCarA_A implements Carriage {
     private int passagerCapacity = 40;
     private int packageCapacity = 300;
     
+    public int getPassagerCapacity(){
+        return this.passagerCapacity;
+    }
+
     public int getPackageCapacity(){
         return this.packageCapacity;
     }
@@ -51,10 +55,14 @@ class PassengersCarA implements Carriage {
     }
 }
 
-class PassengersCarB implements Carriage {
+class PassengersCarB_A implements Carriage {
     private int passagerCapacity = 50;
     private int packageCapacity = 400;
 
+    public int getPassagerCapacity(){
+        return this.passagerCapacity;
+    }
+    
     public int getPackageCapacity(){
         return this.packageCapacity;
     }
@@ -72,7 +80,7 @@ class PassengersCarB implements Carriage {
     }
 }
 
-class LoadsCar implements Carriage {
+class LoadsCar_A implements Carriage {
     private int packageCapacity = 400;
     
     public int getPackageCapacity(){
@@ -80,11 +88,49 @@ class LoadsCar implements Carriage {
     }
 }
 
+class PassengersCarA_B implements Carriage {
+    public int getPackageCapacity(){
+        return 300;
+    }
+
+    public void openDoors(){
+        System.out.println("Doors Open!");
+    }
+    
+    public void closeDoors(){
+        System.out.println("Doors Closed!");
+    }
+}
+
+class PassengersCarB_B implements Carriage {
+    public int getPackageCapacity(){
+        return 400;
+    }
+
+    public void openDoors(){
+        System.out.println("Doors Open!");
+    }
+    
+    public void closeDoors(){
+        System.out.println("Doors Closed!");
+    }
+
+    public void blockWindows(){
+        System.out.println("Windows Blocked!");
+    }
+}
+
+class LoadsCar_B implements Carriage {
+    public int getPackageCapacity(){
+        return 400;
+    }
+}
+
 public class Prob6_2 {
     public static void main(String[] args){
-        Train t1 = new Train(new PassengersCarA(), new PassengersCarB());
-        Train t2 = new Train(new LoadsCar(), new PassengersCarA());
-        Train t3 = new Train(new PassengersCarA(), new PassengersCarB(), new LoadsCar());
+        Train t1 = new Train(new PassengersCarA_A(), new PassengersCarB_A());
+        Train t2 = new Train(new LoadsCar_A(), new PassengersCarA_B());
+        Train t3 = new Train(new PassengersCarA_B(), new PassengersCarB_B(), new LoadsCar_B());
 
         if ( t1.equals(t2) ){
             System.out.println("t1 == t2");

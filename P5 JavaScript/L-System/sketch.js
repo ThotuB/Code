@@ -1,39 +1,75 @@
-let time = 0;
-let wave = [];
+let rule = [];
+let sentance = "F";
 
-let xScale = 0.5;
-let yScale = 1;
-let xOffset = 500;
-
-let drawing;
+let len = 340;
+let angle = PI/6
 
 function setup(){
-    createCanvas(2000, 1200);
-    wave[0] = [];
-    wave[1] = [];
-    wave[2] = [];
+    createCanvas(2000, 2000);
+
+    rule["F"] = "FF+[+F-F-F]-[-F+F-[+F++F]-F]";
+
+    var button = createButton("*");
+    createP(sentance);
+    button.mousePressed( function() {
+        len /= 2;
+        sentance = L_System(sentance, 1);
+    } );
+}
+
+function L_System(text, iter){
+    if ( iter == 0){
+        //sentance = text;
+        return text;
+    }
+    else {
+        let textNext = "";
+        let textLen = text.length;
+
+        for (let i = 0 ; i < textLen ; i++){
+            if ( rule[text[i]] != undefined ){
+                textNext += rule[text[i]];
+            }
+            else {
+                textNext += text[i];
+            }
+        }
+
+        //createP(textNext);
+
+        return L_System(textNext, iter - 1);
+    }
+}
+
+function textToLines(text){
+    stroke(255);
+    for (let i = 0 ; i < text.length ; i++){
+        let c = text[i];
+
+        switch (c){
+            case "F":
+                line(0, 0, 0, -len);
+                translate(0, -len);
+                break;
+            case "+":
+                rotate(angle);
+                break;
+            case "-":
+                rotate(-angle);
+                break;
+            case "[":
+                push();
+                break;
+            case "]":
+                pop();
+                break;
+        }
+    }
 }
 
 function draw(){
     background(0);
-    translate(400, 200);
+    translate(1000, 1950);
 
-    let radius = 100;
-
-    for (drawing = 0 ; drawing < 3 ; drawing ++){
-        stroke(255);
-        noFill();
-        fourierCircles(time, radius, 0, 0, 0, 1 + 10 * drawing * drawing);
-
-        beginShape();
-        noFill();
-        for (let i = 0 ; i < 1000 ; i++){
-            vertex(i * xScale + xOffset, wave[drawing][i] * yScale);
-        }
-        endShape();
-        
-        translate(0, 4 * radius);
-    } 
-
-    time -= 0.01;
+    textToLines(sentance);
 }

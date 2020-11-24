@@ -1,18 +1,24 @@
-let lenghtDecay;
-let lengthDecaySlider;
+let lengthGrowth;
+let lengthGrowthSlider;
 
 let iterationMax;
 let iterationMaxSlider;
+
+let angle;
+let angleSlider;
+
+let eps = 0.0001;
 
 let angles = [];
 
 function setup(){
     createCanvas(2000, 1200);
-    lengthDecaySlider = createSlider(0.1, 3, 2, 0.1);
-    lengthDecaySlider.position(20, 80);
+    lengthGrowthSlider = createSlider(0.01, 1, 0.5, 0.01);
+    lengthGrowthSlider.position(20, 25);
     iterationMaxSlider = createSlider(1, 16, 10, 1);
-
-    angles = [PI/2, -PI/2];
+    iterationMaxSlider.position(20, 50);
+    angleSlider = createSlider(0, PI/2 + eps, PI/3, PI/64);
+    angleSlider.position(20, 75);
 }
 
 function fractal_tree(x, y, length, angle, iteration){
@@ -26,7 +32,7 @@ function fractal_tree(x, y, length, angle, iteration){
         line(x, y, xNext, yNext);
 
         for (let i = 0 ; i < angles.length ; i++){
-            fractal_tree(xNext, yNext, length/lenghtDecay, angle + angles[i], iteration+1);
+            fractal_tree(xNext, yNext, length*lengthGrowth, angle + angles[i], iteration+1);
         }
     }
 }
@@ -37,8 +43,10 @@ function draw(){
 
     let length = 300;
 
-    lenghtDecay = lengthDecaySlider.value();
+    lengthGrowth = lengthGrowthSlider.value();
     iterationMax = iterationMaxSlider.value();
+    angle = angleSlider.value();
+    angles = [angle, -angle];
 
     stroke(255);
     fractal_tree(0, 0, length, -PI/2, 0);
