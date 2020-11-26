@@ -10,7 +10,8 @@ class T {
         return printTabs;
     }
 }
-/// ~~~~~~~~~~~~ BLACKJACK ~~~~~~~~~~~~
+
+/// ~~~~~~~~~~~~~~~~~~~~~~~~~~~ BLACKJACK ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 class Game {
     private Deck deck;
@@ -41,62 +42,78 @@ class Game {
     }
 
     public Player getPlayer(int index){
-        if ( index >= 0 && index < this.players.size() ){
-            return this.players.get(index);
-        }
-        return null;
+        return this.players.get(index);
     }
 
     public ArrayList<Player> getPlayers(){
         return this.players;
     }
 
-    // AUTO MOVES
-    public void deal(){
-        for (int i = 0 ; i < 2 ; i++){
-            for (Player p: players){
-                p.deal(this.deck);
-            }
-            this.dealer.deal(this.deck);
-        }
-        this.dealer.hideCard(0);
-        for (Player p: players){
-            p.state();
-        }
-        this.dealer.state();
+    // DECK
+    public void shuffleDeck(){
+        this.deck.shuffle();
     }
 
-    public void discard(){
-        for (Player p: players){
-            this.discardPlayer(p);
+    // AUTODEAL
+    public void deal(){
+        for (int i = 0 ; i < 2 ; i++){
+            for (Player player: players){
+                player.deal(deck.draw(), 0);
+            }
+            this.dealer.deal(deck.draw(), 0, (i == 0));
         }
-        this.discardPlayer(this.dealer);
+        for (Player player: players){
+            player.checkSplit();
+        }
     }
 
     // PLAYER MOVES
-    public void dealPlayer(Player player){
-        player.deal(this.deck);
-        player.state();
+    public boolean betPlayer(Player player, int index, int amount){
+        return player.makebet(index, amount);
     }
 
-    public boolean doubledownPlayer(Player player){
-        if ( player.doubledown() ){
-            dealPlayer(player);
-            if ( !player.isBust() ){
-                player.stand();
+    public void splitPlayer(Player player){
+        player.split();
+        betPlayer(player, 1, player.getHand(0).getBet());
+
+        player.deal(deck.draw(), 0);
+        player.deal(deck.draw(), player.getHands().size() - 1);
+        player.checkSplit();
+    }
+
+    public boolean doubledownPlayer(Player player, int index){
+        Hand hand = player.getHand(index);
+        if ( this.betPlayer(player, index, hand.getBet()) ){
+            hitPlayer(player, index);
+            if ( hand.getOutcome() == Hand.NONE ){
+                hand.stand();
             }
             return true;
         }
         return false; 
     }
 
-    public void standPlayer(Player player){
-        player.stand();
+    public void hitPlayer(Player player, int index){
+        player.deal(this.deck.draw(), index);
+    }
+
+    public void standPlayer(Player player, int index){
+        player.stand(index);
+    }
+
+    // DISCARD
+    public void discard(){
+        for (Player player: players){
+            this.discardPlayer(player);
+        }
+        this.discardPlayer(this.dealer);
     }
 
     public void discardPlayer(Player player){
-        for (Card c: player.getHand()){
-            this.discard.add(c);
+        for (Hand hand: player.getHands()){
+            for (Card card: hand.getCards()){
+                this.discard.add(card);
+            }
         }
         player.discard();
     }
@@ -116,36 +133,26 @@ class Game {
     }
 }
 
+/// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class Player {
     private String id;
     private String name;
     private int money;
-    private int bet;
+    private int totalBet;
 
-    private ArrayList<Card> hand;
-    private int points;
+    private ArrayList<Hand> hands;
 
-    private boolean hiddenCardFlag;
-    private boolean softAceFlag;
-
-    private boolean blackjackFlag;
-    private boolean standFlag;
-    private boolean bustFlag;
+    private boolean splitFlag;
 
     Player(String id, String name, int money){
         this.id = id;
         this.name = name;
         this.money = money;
-        this.bet = 0;
 
-        this.hand = new ArrayList<Card>();;
-        this.points = 0;
+        this.hands = new ArrayList<Hand>(4);
+        this.hands.add(new Hand());
 
-        this.hiddenCardFlag = false;
-        this.softAceFlag = false;
-
-        this.standFlag = false;
-        this.bustFlag = false;
+        this.splitFlag = false;
     }
 
     // GETTERS
@@ -153,120 +160,85 @@ class Player {
         return this.name;
     }
 
-    public ArrayList<Card> getHand(){
-        return this.hand;
+    public Hand getHand(int index){
+        return this.hands.get(index);
     }
 
-    public int getPoints(){
-        return this.points;
-    }
-    
-    public boolean hasBlackjack(){
-        return this.blackjackFlag;
+    public ArrayList<Hand> getHands(){
+        return this.hands;
     }
 
-    public boolean isStand(){
-        return this.standFlag;
+    public boolean canSplit(){
+        return this.splitFlag;
     }
 
-    public boolean isBust(){
-        return this.bustFlag;
-    }
-
-    // AUTO FUNCTIONS
-    public void state(){
-        if ( this.points == 21 ){
-            this.blackjackFlag = true;
-        }
-        else if ( this.points > 21 ){
-            if ( !this.softAceFlag ){
-                this.bust();
-            }
-            else {
-                this.points -= 10;
-                this.softAceFlag = false;
-            }
-        }
-    }
-
-    public void discard(){
-        this.hand.clear();
-        this.points = 0;
-        this.bet = 0;
-
-        this.hiddenCardFlag = false;
-        this.softAceFlag = false;
-
-        this.blackjackFlag = false;
-        this.standFlag = false;
-        this.bustFlag = false;
-    }
-
-    // MANUAL FUNCTIONS
-    public void deal(Deck deck){
-        Card card = deck.draw();
-    
-        this.hand.add(card);
-        this.points += card.getValue();
-
-        if ( card.getValue() == 11 ){
-            this.softAceFlag = true;
-        }
-    }
-
-    // CARD FUNCTIONS
-    public void hideCard(int index){
-        Card card = this.hand.get(index);
-
-        card.hide();
-        this.points -= card.getValue();
-        // TODO: Handle softAceFlag if value == 11
-        this.hiddenCardFlag = true;
-    }
-
-    public void showCard(int index){
-        Card card = this.hand.get(index);
-
-        card.show();
-        this.points += card.getValue();
-        // TODO: Handle softAceFlag if value == 11
-        this.hiddenCardFlag = false;
-    }
-
-    // PLAYER MOVES
-    public boolean bet(int bet){
-        if ( bet <= this.money ){
-            if ( bet % 2 == 0 && bet > 0 ){
-                this.money -= bet;
-                this.bet = bet;
-
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean doubledown(){
-        if ( this.bet <= this.money ){
-            this.money -= this.bet;
-            this.bet *= 2;
-
+    // BETS
+    public boolean makebet(int index, int amount){
+        if ( 0 <= amount && amount <= this.money && amount % 2 == 0 ){
+            this.getHands().get(index).bet(amount);
+            this.money -= amount;
+            this.totalBet += amount;
             return true;
         }
         return false;
     }
 
-    public void stand(){
-        this.standFlag = true;
+    // SPLIT
+    public void checkSplit(){
+        Hand hand = this.hands.get(0);
+        if ( hand.getCard(0).getValue() == hand.getCard(1).getValue() ){
+            this.splitFlag = true;
+        }
+        else {
+            this.splitFlag = false;
+        }
     }
 
-    public void bust(){
-        this.bustFlag = true;
+    public void split(){
+        Card card = this.hands.get(0).remove(1);
+        Hand newHand  = new Hand();
+
+        newHand.add(card, false);
+        this.hands.add(newHand);
     }
 
-    public void payout(double multiplier){
-        this.money += this.bet + (int)Math.round(this.bet * multiplier);
-        this.bet = 0;
+    // MOVES
+    public void deal(Card card, int index, boolean hidden){
+        this.hands.get(index).add(card, hidden);
+    }
+
+    public void deal(Card card, int index){
+        this.deal(card, index, false);
+    }
+
+    public void stand(int index){
+        this.hands.get(index).stand();
+    }
+
+    // HIDE/SHOW CARD
+    public void hideCardInHand(int indexCard, int indexHand){
+        this.hands.get(indexHand).hideCard(indexCard);
+    }
+
+    public void showCardInHand(int indexCard, int indexHand){
+        this.hands.get(indexHand).showCard(indexCard);
+    }
+    
+    // PAYOUT
+    public void payoutHand(Hand hand, double multiplier){
+        this.money += (int)Math.round(hand.getBet() * multiplier);
+    }
+
+    // DISCARD
+    public void discard(){
+        for (Hand hand:this.hands){
+            hand.discard();
+        }
+        this.totalBet = 0;
+
+        this.hands.clear();
+        this.hands.add(new Hand());
+        this.splitFlag = false;
     }
 
     // TOSTRING()
@@ -275,9 +247,184 @@ class Player {
         printString += T.ab(t+1) + "id: " + this.id + "\n";
         printString += T.ab(t+1) + "name: " + this.name + "\n";
         printString += T.ab(t+1) + "money: " + this.money + "\n";
+        printString += T.ab(t+1) + "totalBet: " + this.totalBet + "\n";
+        printString += T.ab(t+1) + "splitFlag: " + this.splitFlag + "\n";
+        for (Hand hand: hands){
+            printString += hand.toObjeString(t+1);
+        }
+        printString += T.ab(t) + "}";
+
+        return printString;
+    }
+}
+
+/// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+class Hand {
+    private int bet;
+
+    private ArrayList<Card> cards;
+    private int points;
+
+    private boolean hiddenCardFlag;
+    private boolean aceCardFlag;
+
+    public static final int NONE = 0;
+    public static final int BUST = 1;
+    public static final int STAND = 2;
+    public static final int BLACKJACK = 3;
+    private int outcome;
+
+    public Hand(){
+        this.bet = 0;
+
+        this.cards = new ArrayList<Card>();
+        this.points = 0;
+
+        this.hiddenCardFlag = false;
+        this.aceCardFlag = false;
+
+        this.outcome = NONE;
+    }
+
+    // GETTERS
+    public int getBet(){
+        return this.bet;
+    }
+
+    public Card getCard(int index){
+        return this.cards.get(index);
+    }
+
+    public ArrayList<Card> getCards(){
+        return this.cards;
+    }
+
+    public int getPoints(){
+        return this.points;
+    }
+
+    public int getOutcome(){
+        return this.outcome;
+    }
+
+    public boolean isBust(){
+        return (this.outcome == BUST);
+    }
+
+    public boolean isStand(){
+        return (this.outcome == STAND);
+    }
+
+    public boolean hasBlackjack(){
+        return (this.outcome == BLACKJACK);
+    }
+
+    // OUTCOME SETTERS
+    public void setOutcome(int outcome){
+        this.outcome = outcome; // NONE/BUST/STAND/BLACKJACK
+    }
+
+    public void bust(){
+        this.outcome = BUST;
+    }
+
+    public void stand(){
+        this.outcome = STAND;
+    }
+
+    public void blackjack(){
+        this.outcome = BLACKJACK;
+    }
+
+    // BETS
+    public void bet(int amount){
+        this.bet += amount;
+    }
+
+    // DRAW CARD
+    public void add(Card card, boolean hidden){
+        this.cards.add(card);
+        if ( !hidden ){
+            addstate(card);
+        }
+        else {
+            this.hiddenCardFlag = true;
+            card.hide();
+        }
+    }
+
+    public Card remove(int index){
+        Card card = this.cards.get(index);
+    
+        this.cards.remove(index);
+        removestate(card);
+    
+        return card;
+    }
+
+    // HIDE/SHOW CARD
+    public void hideCard(int index){
+        Card card = this.cards.get(index);
+
+        card.hide();
+        this.removestate(card);
+        this.hiddenCardFlag = true;
+    }
+
+    public void showCard(int index){
+        Card card = this.cards.get(index);
+
+        card.show();
+        this.addstate(card);
+        this.hiddenCardFlag = false;
+    }
+
+    public void addstate(Card card){
+        this.points += card.getValue();
+        if ( card.getValue() == 11){
+            this.aceCardFlag = true;
+        }
+
+        if ( this.points == 21 ){
+            this.blackjack();
+        }
+        else if ( this.points > 21 ){
+            if ( !this.aceCardFlag ){
+                this.bust();
+            }
+            else {
+                this.points -= 10;
+                this.aceCardFlag = false;
+            }
+        }
+    }
+
+    public void removestate(Card card){
+        this.points -= card.getValue();
+        if ( card.getValue() == 11){
+            this.aceCardFlag = false;
+        }
+    }
+
+    // DISCARD
+    public void discard(){
+        this.bet = 0;
+
+        this.cards.clear();
+        this.points = 0;
+
+        this.hiddenCardFlag = false;
+        this.aceCardFlag = false;
+
+        this.outcome = NONE;
+    }
+
+    // TOSTRING()
+    public String toObjeString(int t){
+        String printString = T.ab(t) + "Hand {\n";
         printString += T.ab(t+1) + "bet: " + this.bet + "\n";
-        printString += T.ab(t+1) + "Hand {" + "\n";
-        for (Card c: hand){
+        printString += T.ab(t+1) + "Cards {" + "\n";
+        for (Card c: cards){
             printString += c.toObjectString(t+2) + "\n";
         }
         printString += T.ab(t+1) + "}\n";
@@ -286,15 +433,20 @@ class Player {
             printString += "?";
         }
         printString += "\n";
-        printString += T.ab(t+1) + "blackjackFlag: " + this.blackjackFlag + "\n";
-        printString += T.ab(t+1) + "standFlag: " + this.standFlag + "\n";
-        printString += T.ab(t+1) + "bustFlag: " + this.bustFlag + "\n";
-        printString += T.ab(t) + "}";
+        printString += T.ab(t+1) + "outcome: ";
+        switch ( this.outcome ){
+            case NONE: printString += "NONE\n"; break;
+            case BUST: printString += "BUST\n"; break;
+            case STAND: printString += "STAND\n"; break;
+            case BLACKJACK: printString += "BLACKJACK\n"; break;
+        }
+        printString += T.ab(t) + "}\n";
 
         return printString;
     }
 }
 
+/// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class Deck {
     private int size;
     private ArrayList <Card> cards;
@@ -354,6 +506,7 @@ class Deck {
     }
 }
 
+/// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class Card {
     private static final String[] SUITS = {"♠️", "♥️", "♣", "♦️"};
     private static final String[] NUMBS = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
@@ -410,14 +563,15 @@ class Card {
     }
 }
 
+/// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class Client {
-    public static void placeBet(Player player, Scanner scan){
+    public static void placeBet(Game game, Player player, Scanner scan){
         System.out.print(player.getName() + "'s bet: ");
         int bet = scan.nextInt();
 
-        if ( !player.bet(bet) ){
+        if ( !game.betPlayer(player, 0, bet) ){
             System.out.println("Invalid bet amount!");
-            Client.placeBet(player, scan);
+            Client.placeBet(game, player, scan);
         }
         else {
             scan.nextLine();
@@ -425,50 +579,63 @@ class Client {
     }
 
     public static void manualdeal(Game game, Player player, Scanner scan){
-        int move = 1;
-        while ( !player.isBust() && !player.isStand() && !player.hasBlackjack() )
-        {
-            System.out.print(player.getName() + ": ");
-            String option = scan.nextLine();
+        for (int indexHand = 0; indexHand < player.getHands().size() ; indexHand++ ){
+            int move = 1;
+            while ( player.getHand(indexHand).getOutcome() == Hand.NONE )
+            {
+                System.out.print(player.getName() + ": ");
+                String option = scan.nextLine();
+                boolean flag = false;
 
-            if ( option.equalsIgnoreCase("double") ){
-                if ( move == 1 ){
-                    if ( !game.doubledownPlayer(player) ){
-                        System.out.println("Can't Double Down!");
-                        continue;
-                    }
-                }
-                else {
-                    continue;
-                }
-            }
-            else if ( option.equalsIgnoreCase("hit") ){
-                game.dealPlayer(player);
-            }
-            else if ( option.equalsIgnoreCase("stand") ){
-                game.standPlayer(player);
-            }
-            else {
-                continue;
-            }
+                switch (option){
+                    case "split":
+                        if ( move == 1 ){
+                            if ( player.canSplit() ){
+                                game.splitPlayer(player);
+                                flag = true;
+                                move--;
+                            }
+                        }
+                        break;
+                    case "double":
+                        if ( move == 1 ){
+                            if ( game.doubledownPlayer(player, indexHand) ){
+                                flag = true;
+                            }
+                        }
+                        break;
+                    case "hit":
+                        game.hitPlayer(player, indexHand);
+                        flag = true; break;
 
-            move++;
-            System.out.println(game.toObjectString(0));
+                    case "stand":
+                        game.standPlayer(player, indexHand);
+                        flag = true; break;
+                    default:
+                }
+
+                if ( flag ){
+                    move++;
+                    System.out.println(game.toObjectString(0));
+                }
+            }
         }
     }
 
-    public static void autodeal(Game game, Player player, int standPoints){
-        while ( !player.isBust() && !player.isStand() && !player.hasBlackjack() )
+    public static void autodeal(Game game, int standPoints){
+        Player player = game.getDealer();
+        Hand hand = player.getHand(0);
+        while ( hand.getOutcome() == Hand.NONE )
         {
             System.out.print(player.getName() + ": ");
 
-            if ( player.getPoints() < standPoints ){
+            if ( hand.getPoints() < standPoints ){
                 System.out.println("Hit");
-                game.dealPlayer(player);
+                game.hitPlayer(player, 0);
             }
             else {
                 System.out.println("Stand");
-                game.standPlayer(player);
+                game.standPlayer(player, 0);
             }
 
             System.out.println(game.toObjectString(0));
@@ -477,45 +644,58 @@ class Client {
 
     public static void payout(Player player, Player dealer){
         System.out.print(player.getName() + ": ");
-        String outcome;
+
+        String outcomeStr;
         double multi;
 
-        if ( player.isBust() ){
-            outcome = "BUST"; multi = 0;
+        Hand dealerHand = dealer.getHands().get(0);
+        int dealerOUTCOME = dealerHand.getOutcome();
+
+        for (Hand hand: player.getHands()){
+            int playerOUTCOME = hand.getOutcome();
+
+            switch ( playerOUTCOME ){
+                case Hand.BUST: 
+                    outcomeStr = "BUST"; multi = 0;
+                    break;
+                case Hand.STAND:
+                    switch ( dealerOUTCOME ){
+                        case Hand.BLACKJACK:
+                            outcomeStr = "LOSS"; multi = 0;
+                            break;
+                        case Hand.STAND:
+                            if ( hand.getPoints() < dealerHand.getPoints() ){
+                                outcomeStr = "LOSS"; multi = 0;
+                            }
+                            else if ( hand.getPoints() == dealerHand.getPoints() ){
+                                outcomeStr = "PUSH"; multi = 1;
+                            }
+                            else {
+                                outcomeStr = "WIN"; multi = 2;
+                            }
+                            break;
+                        default:
+                            outcomeStr = "WIN"; multi = 2;
+                            break;
+                    }
+                    break;
+                case Hand.BLACKJACK:
+                    if (  dealerOUTCOME == Hand.BLACKJACK ){
+                        outcomeStr = "PUSH"; multi = 1;
+                    }
+                    else {
+                        outcomeStr = "BLACKJACK"; multi = 2.5;
+                    }
+                    break;
+                default:
+                    outcomeStr = "HOW DID YOU GET HERE?"; multi = 100;
+                    break;
+            }
+            
+            player.payoutHand(hand, multi);
+            System.out.print(outcomeStr + " x" + multi + " ");
         }
-        else if ( player.isStand() ){
-            if ( dealer.hasBlackjack() ){
-                outcome = "LOSS"; multi = 0;
-            }
-            else if ( dealer.isStand() ){
-                if ( player.getPoints() < dealer.getPoints() ){
-                    outcome = "BUST"; multi = 0;
-                }
-                else if ( player.getPoints() == dealer.getPoints() ){
-                    outcome = "PUSH"; multi = 1;
-                }
-                else {
-                    outcome = "WIN"; multi = 2;
-                }
-            }
-            else {
-                outcome = "WIN"; multi = 2;
-            }
-        }
-        else if ( player.hasBlackjack() ){
-            if ( dealer.hasBlackjack() ){
-                outcome = "PUSH"; multi = 1;
-            }
-            else {
-                outcome = "BLACKJACK"; multi = 2.5;
-            }
-        }
-        else {
-            outcome = "HOW DID YOU GET HERE?"; multi = 100;
-        }
-        
-        player.payout(multi);
-        System.out.println(outcome + " x" + multi);
+        System.out.println();
     }
     public static void main(String[] args){
         ArrayList<Player> playerArr = new ArrayList<Player>();
@@ -524,22 +704,22 @@ class Client {
 
         Game game = new Game(playerArr);
 
-        game.getDeck().shuffle();
+        game.shuffleDeck();
 
         Scanner scan = new Scanner(System.in);
 
-        boolean goNext = true;
+        boolean goNext;
 
-        while ( goNext ){
-            // ROUND START
-            game.deal();
-            System.out.println(game.toObjectString(0));
-
+        do {
             // BETS
             for (Player player : game.getPlayers())
             {
-                Client.placeBet(player, scan);
+                Client.placeBet(game, player, scan);
             }
+
+            // ROUND START
+            game.deal();
+            System.out.println(game.toObjectString(0));
 
             // PLAYERS' TURNS
             for (Player player : game.getPlayers())
@@ -550,15 +730,15 @@ class Client {
             // DEALER'S TURN
             Player dealer = game.getDealer();
 
-            dealer.showCard(0);
+            dealer.showCardInHand(0, 0);
             System.out.println(game.toObjectString(0));
 
-            Client.autodeal(game, dealer, 17);
+            Client.autodeal(game, 17);
 
             // PAYOUT
             for (Player player : game.getPlayers())
             {
-                payout(player, dealer);
+                Client.payout(player, dealer);
             }
             
             // ROUND END
@@ -567,7 +747,7 @@ class Client {
 
             System.out.print("Another round? (Y): ");
             goNext = ( scan.nextLine().equalsIgnoreCase("Y") );
-        }
+        }while( goNext );
 
         scan.close();
     }

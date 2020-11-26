@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Prob7_2",
+            "request": "launch",
+            "mainClass": "Prob7_2",
+            "projectName": "Code_f13620ae"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Prob5_1",
             "request": "launch",
             "mainClass": "Prob5_1",

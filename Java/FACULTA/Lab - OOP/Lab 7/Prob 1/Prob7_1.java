@@ -1,27 +1,56 @@
 import java.util.ArrayList;
 
 class Company {
-    private ArrayList<Employee> employees = new ArrayList<Employee>();
+    private ArrayList<Employee> employeeList = new ArrayList<Employee>();
 
     public boolean add(Employee newEmployee){
-        for (int i = 0 ; i < employees.size() ; i++){
-            if ( employees.contains(newEmployee) ){
-                return false;
-            }
+        if ( employeeList.contains(newEmployee) ){
+            return false;
         }
 
-        employees.add(newEmployee);
+        employeeList.add(newEmployee);
         return true;
+    }
+
+    public boolean isInCompany(Strategy strategy){
+        for (Employee employee: employeeList){
+            if ( strategy.isCondition(employee) ){
+                return true;
+            }
+        }
+        return false;
     }
 
     public String toString(){
         String printString = "";
 
-        for (int i = 0 ; i < employees.size() ; i++){
-            printString += employees.toString();
+        for (Employee employee: employeeList){
+            printString += employee.toString();
         }
 
         return printString;
+    }
+}
+
+interface Strategy {
+    public boolean isCondition(Employee employee);
+}
+
+class Strategy1 implements Strategy {
+    String name;
+
+    public Strategy1(String name){
+        this.name = name;
+    }
+
+    public boolean isCondition(Employee employee){
+        return this.name.equals(employee.getName());
+    }
+}
+
+class Strategy2 implements Strategy {
+    public boolean isCondition(Employee employee){
+        return (employee.getSalary() == 1000) ;
     }
 }
 
@@ -32,6 +61,10 @@ abstract class Employee {
     protected Employee(String name, int personalID){
         this.name = name;
         this.personalID = personalID;
+    }
+
+    public String getName(){
+        return this.name;
     }
     
     abstract double getSalary();
@@ -50,7 +83,7 @@ abstract class Employee {
 
         printString += "Name: " + this.name + "\n";
         printString += "Personal ID: " + this.personalID + "\n";
-        printString += "Salary: " + this.getSalary() + "\n\n";
+        printString += "Salary: " + this.getSalary() + "\n";
 
         return printString;
     }
@@ -91,15 +124,32 @@ class HourlyPaidEmployee extends Employee {
 
 public class Prob7_1 {
     public static void main(String[] args){
-        PermanentEmployee e1 = new PermanentEmployee("Gion", 5255432, 3000);
-        HourlyPaidEmployee e2 = new HourlyPaidEmployee("Dani", 5436543, 50);
-        e2.setWorkedHours(120);
+        PermanentEmployee e1 = new PermanentEmployee("Bob", 5255432, 3000);
+        PermanentEmployee e2 = new PermanentEmployee("Gion", 654645, 2500);
+        HourlyPaidEmployee e3 = new HourlyPaidEmployee("Inca cnv", 5436543, 50);
+                            e3.setWorkedHours(20);
+
+        Strategy1 s1 = new Strategy1("Gion");
+        Strategy2 s2 = new Strategy2();
 
         Company c = new Company();
 
         c.add(e1);
+
+        System.out.println(c.toString());
+        System.out.println("Company has strategy1: " + c.isInCompany(s1));
+        System.out.println("Company has strategy2: " + c.isInCompany(s2) + "\n");
+
         c.add(e2);
 
         System.out.println(c.toString());
+        System.out.println("Company has strategy1: " + c.isInCompany(s1));
+        System.out.println("Company has strategy2: " + c.isInCompany(s2) + "\n");
+
+        c.add(e3);
+
+        System.out.println(c.toString());
+        System.out.println("Company has strategy1: " + c.isInCompany(s1));
+        System.out.println("Company has strategy2: " + c.isInCompany(s2) + "\n");
     }
 }
