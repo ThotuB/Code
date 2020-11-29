@@ -1,42 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include <string.h>
 
-typedef struct coderole {
-    int code;
-    char role[100];
-}CODEROLE;
+#define BUF_SIZE 80
+
+char* get_buffer(){
+    char *buffer = (char*)calloc(BUF_SIZE , sizeof(char));
+
+    printf("Input:");
+    fgets(buffer, BUF_SIZE, stdin);
+
+    return buffer;
+}
+
+void print_buffer(char *buffer){
+    for (unsigned i = 0 ; i < BUF_SIZE ; i++){
+        if ( isalpha(buffer[i]) || isspace(buffer[i]) ){
+            printf("%c", buffer[i]);
+        }
+    }
+}
 
 int main() {
-    CODEROLE *codeptr=(CODEROLE*)malloc(100000*sizeof(CODEROLE));
-    int index = 0;
-    FILE *find;
-    find = fopen("in.txt", "r");
-
-    while (!feof(find)) {
-        printf("sunt in while %d\n", index);
-        char str[100];
-        fscanf(find, "%d", &codeptr[index].code);
-        fgetc(find);
-        fgets(str, 50, find);
-        str[strlen(str) - 1] = '\0';
-        strcpy(codeptr[index].role, str);
-        index++;
-    }
-
-//    for (int i = 0; i < index; i++) {
-//        printf("%d \n", codrptr[i].code);
-//    }
-//
-//    for (int i = 0; i < index; i++) {
-//        printf("%s \n", codrptr[i].role);
-//    }
-
-    printf("%d \n", index);
-    printf("%d %s", codeptr[0].code, codeptr[0].role);
-    printf("%d \n", index);
-    printf("%d %s", codeptr[1].code, codeptr[1].role);
-    printf("%d \n", index);
+    char *buffer = get_buffer();
+    print_buffer(buffer);
 
     return 0;
 }

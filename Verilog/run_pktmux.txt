@@ -1,6 +1,0 @@
-if [file exists "work"] {vdel -all}
-vlib work
-if [catch "vlog pktmux.v"] return
-vsim -voptargs=+acc pktmux_tb
-run -all
-quit -sim

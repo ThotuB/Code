@@ -17,14 +17,14 @@ class Game {
     private Deck deck;
     private Deck discard;
 
-    private Player dealer;
+    private Dealer dealer;
     private ArrayList<Player> players;
 
     public Game(ArrayList<Player> players, int nrDecks){
         this.deck = new Deck(nrDecks);
         this.discard = new Deck(0);
 
-        this.dealer = new Player("0", "Dealer", 42);
+        this.dealer = new Dealer();
         this.players = players;
     }
     
@@ -37,7 +37,7 @@ class Game {
         return this.deck;
     }
 
-    public Player getDealer(){
+    public Dealer getDealer(){
         return this.dealer;
     }
 
@@ -60,7 +60,7 @@ class Game {
             for (Player player: players){
                 player.deal(deck.draw(), 0);
             }
-            this.dealer.deal(deck.draw(), 0, (i == 0));
+            this.dealer.deal(deck.draw(), (i == 0));
         }
         for (Player player: players){
             player.checkSplit();
@@ -74,10 +74,12 @@ class Game {
 
     public void splitPlayer(Player player){
         player.split();
-        betPlayer(player, 1, player.getHand(0).getBet());
+
+        int handNr = player.getHands().size() - 1;
+        betPlayer(player, handNr, player.getHand(0).getBet());
 
         player.deal(deck.draw(), 0);
-        player.deal(deck.draw(), player.getHands().size() - 1);
+        player.deal(deck.draw(), handNr);
         player.checkSplit();
     }
 
@@ -93,6 +95,7 @@ class Game {
         return false; 
     }
 
+    // PLAYER/DEALER MOVES
     public void hitPlayer(Player player, int index){
         player.deal(this.deck.draw(), index);
     }
@@ -101,12 +104,21 @@ class Game {
         player.stand(index);
     }
 
+    public void hitDealer(){
+        this.dealer.deal(this.deck.draw());
+    }
+
+    public void standDealer(){
+        this.dealer.stand();
+    }
+
+
     // DISCARD
     public void discard(){
         for (Player player: players){
             this.discardPlayer(player);
         }
-        this.discardPlayer(this.dealer);
+        this.discardDealer();
     }
 
     public void discardPlayer(Player player){
@@ -118,15 +130,32 @@ class Game {
         player.discard();
     }
 
+    public void discardDealer(){
+        for (Card card: this.dealer.getHand().getCards()){
+            this.discard.add(card);
+        }
+        this.dealer.discard();
+    }
+
+    // REFILL
+    public void refill(){
+        for (Card card: this.discard.getCards()){
+            this.deck.add(card);
+        }
+        this.discard.clear();
+    }
+
     // TOSTRING()
     public String toObjectString(int t){
-        String printString = T.ab(t) + "Game {\n";
-        printString += deck.toObjectString(t+1) + "\n";
-        printString += discard.toObjectString(t+1) + "\n";
-        printString += dealer.toObjectString(t+1) + "\n";
-        for (Player p: players){
-            printString += p.toObjectString(t+1) + "\n";
+        String printString = "Game {\n";
+        printString += T.ab(t+1) + "deck => "     + deck.toObjectString(t+1)      + "\n";
+        printString += T.ab(t+1) + "discard => "  + discard.toObjectString(t+1)   + "\n";
+        printString += T.ab(t+1) + "dealer => "   + dealer.toObjectString(t+1)    + "\n";
+        printString += T.ab(t+1) + "players => Player[] {\n";
+        for (Player player: players){
+            printString += T.ab(t) + player.toObjectString(t+2) + "\n";
         }
+        printString += T.ab(t+1) + "}\n";
         printString += T.ab(t) + "}";
 
         return printString;
@@ -134,6 +163,57 @@ class Game {
 }
 
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+class Dealer {
+    private Hand hand;
+
+    public Dealer(){
+        this.hand = new Hand();
+    }
+
+    // GETTERS
+    public Hand getHand(){
+        return this.hand;
+    }
+
+    // MOVES
+    public void deal(Card card, boolean hidden){
+        this.hand.add(card, hidden);
+    }
+
+    public void deal(Card card){
+        this.deal(card, false);
+    }
+
+    public void stand(){
+        this.hand.stand();
+    }
+
+    // HIDE/SHOW CARD
+    public void hideCard(int index){
+        this.hand.hideCard(index);
+    }
+
+    public void showCard(int index){
+        this.hand.showCard(index);
+    }
+
+    // DISCARD
+    public void discard(){
+        this.hand.discard();
+    }
+
+    // TOSTRING()
+    public String toObjectString(int t){
+        String printString = "Dealer {\n";
+        printString += T.ab(t+1) + "name: Dealer\n";
+        printString += T.ab(t+1) + "money: ∞\n";
+        printString += T.ab(t+1) + this.hand.toObjeString(t+1);
+        printString += T.ab(t) + "}";
+
+        return printString;
+    }
+}
+
 class Player {
     private String id;
     private String name;
@@ -244,14 +324,16 @@ class Player {
     // TOSTRING()
     public String toObjectString(int t){
         String printString = T.ab(t) + "Player {\n";
-        printString += T.ab(t+1) + "id: " + this.id + "\n";
-        printString += T.ab(t+1) + "name: " + this.name + "\n";
-        printString += T.ab(t+1) + "money: " + this.money + "\n";
-        printString += T.ab(t+1) + "totalBet: " + this.totalBet + "\n";
-        printString += T.ab(t+1) + "splitFlag: " + this.splitFlag + "\n";
+        printString += T.ab(t+1) + "id: "           + this.id           + "\n";
+        printString += T.ab(t+1) + "name: "         + this.name         + "\n";
+        printString += T.ab(t+1) + "money: "        + this.money        + "\n";
+        printString += T.ab(t+1) + "totalBet: "     + this.totalBet     + "\n";
+        printString += T.ab(t+1) + "splitFlag: "    + this.splitFlag    + "\n";
+        printString += T.ab(t+1) + "hands => Hand[] {\n";
         for (Hand hand: hands){
-            printString += hand.toObjeString(t+1);
+            printString += T.ab(t+2) + hand.toObjeString(t+2);
         }
+        printString += T.ab(t+1) + "}\n";
         printString += T.ab(t) + "}";
 
         return printString;
@@ -421,11 +503,11 @@ class Hand {
 
     // TOSTRING()
     public String toObjeString(int t){
-        String printString = T.ab(t) + "Hand {\n";
+        String printString = "Hand {\n";
         printString += T.ab(t+1) + "bet: " + this.bet + "\n";
-        printString += T.ab(t+1) + "Cards {" + "\n";
+        printString += T.ab(t+1) + "cards => Card[] {\n";
         for (Card c: cards){
-            printString += c.toObjectString(t+2) + "\n";
+            printString += T.ab(t+2) + c.toObjectString() + "\n";
         }
         printString += T.ab(t+1) + "}\n";
         printString += T.ab(t+1) + "points: " + this.points;
@@ -435,11 +517,12 @@ class Hand {
         printString += "\n";
         printString += T.ab(t+1) + "outcome: ";
         switch ( this.outcome ){
-            case NONE: printString += "NONE\n"; break;
-            case BUST: printString += "BUST\n"; break;
-            case STAND: printString += "STAND\n"; break;
-            case BLACKJACK: printString += "BLACKJACK\n"; break;
+            case NONE:      printString += "NONE";      break;
+            case BUST:      printString += "BUST";      break;
+            case STAND:     printString += "STAND";     break;
+            case BLACKJACK: printString += "BLACKJACK"; break;
         }
+        printString += "\n";
         printString += T.ab(t) + "}\n";
 
         return printString;
@@ -454,6 +537,15 @@ class Deck {
     public Deck(int nrDecks){
         this.cards = new ArrayList<Card>();
         this.reset(nrDecks);
+    }
+
+    // GETTERS
+    public int size(){
+        return this.size;
+    }
+
+    public ArrayList<Card> getCards(){
+        return this.cards;
     }
 
     // AUTO FUNCTIONS
@@ -493,13 +585,20 @@ class Deck {
         this.size = this.cards.size();
     }
 
+    public void clear(){
+        this.cards.clear();
+        this.size = 0;
+    }
+
     // TOSTRING()
     public String toObjectString(int t){
-        var printString = T.ab(t) + "Deck {\n";
+        var printString = "Deck {\n";
         printString += T.ab(t+1) + "size: " + this.size + "\n";
+        printString += T.ab(t+1) + "cards => Card[] {\n";
         for (Card c: this.cards){
-            printString += c.toObjectString(t+1) + "\n";
+            printString += T.ab(t+2) + c.toObjectString() + "\n";
         }
+        printString += T.ab(t+1) + "}\n";
         printString += T.ab(t) + "}";
 
         return printString;
@@ -550,8 +649,8 @@ class Card {
     }
 
     // TOSTRING()
-    public String toObjectString(int t){
-        String printString = T.ab(t) + "Card { ";
+    public String toObjectString(){
+        String printString = "Card { ";
         if ( this.hiddenFlag ){
             printString += "number: " + "?" + " suit: " + "?" + " }";
         }
@@ -623,32 +722,31 @@ class Client {
     }
 
     public static void autodeal(Game game, int standPoints){
-        Player player = game.getDealer();
-        Hand hand = player.getHand(0);
+        Hand hand = game.getDealer().getHand();
         while ( hand.getOutcome() == Hand.NONE )
         {
-            System.out.print(player.getName() + ": ");
+            System.out.print("Dealer: ");
 
             if ( hand.getPoints() < standPoints ){
                 System.out.println("Hit");
-                game.hitPlayer(player, 0);
+                game.hitDealer();
             }
             else {
                 System.out.println("Stand");
-                game.standPlayer(player, 0);
+                game.standDealer();
             }
 
             System.out.println(game.toObjectString(0));
         }
     }
 
-    public static void payout(Player player, Player dealer){
+    public static void payout(Player player, Dealer dealer){
         System.out.print(player.getName() + ": ");
 
         String outcomeStr;
         double multi;
 
-        Hand dealerHand = dealer.getHands().get(0);
+        Hand dealerHand = dealer.getHand();
         int dealerOUTCOME = dealerHand.getOutcome();
 
         for (Hand hand: player.getHands()){
@@ -728,9 +826,9 @@ class Client {
             }
 
             // DEALER'S TURN
-            Player dealer = game.getDealer();
+            Dealer dealer = game.getDealer();
 
-            dealer.showCardInHand(0, 0);
+            dealer.showCard(0);
             System.out.println(game.toObjectString(0));
 
             Client.autodeal(game, 17);
@@ -743,6 +841,7 @@ class Client {
             
             // ROUND END
             game.discard();
+            game.refill();
             System.out.println(game.toObjectString(0));
 
             System.out.print("Another round? (Y): ");
