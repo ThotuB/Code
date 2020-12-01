@@ -25,23 +25,43 @@ void print_table(){
 }
 
 /// ------------------ SVG DRAWING FUNCTIONS ------------------
-#define LEN 60
+#define LEN 100
 
 void start_draw(FILE *stream){
   fprintf(stream, "<svg width=\"%u\" height=\"%u\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" overflow=\"scroll\">\n", (SIZE + 1) * LEN, 100 * (SIZE + 1) * LEN);
-}
+  }
 
 void stop_draw(FILE *stream){
   fprintf(stream, "</svg>");
 }
 
 void draw_queen(FILE *stream, unsigned drawing, unsigned i, unsigned j){
-  unsigned cx = LEN * ( 1 + j );
-  unsigned cy = LEN + drawing * (SIZE + 1) * LEN + i * LEN;
-  unsigned r = LEN*1/4;
+  float x = LEN/2 + LEN * j;
+  float y = LEN/2 + LEN * i + drawing * (SIZE + 1) * LEN;
+  float g = 2.2;
 
-  fprintf(stream, "<circle cx=\"%u\" cy=\"%u\" r=\"%u\" stroke-width=\"5\" stroke=\"black\" fill-opacity=\"0%%\" />\n", cx, cy, r);
-  fprintf(stream, "<line x1=\"%u\" y1=\"%u\" x2=\"%u\" y2=\"%u\" stroke-width=\"5\" stroke=\"black\" fill-opacity=\"0%%\" />\n", cx + r/4, cy + r/4, cx + r, cy + r);
+  fprintf(stream, "<g style=\"opacity:1; fill:#ffffff; fill-opacity:0; fill-rule:evenodd; stroke:#000000; stroke-width:3; stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4; stroke-dasharray:none; stroke-opacity:1;\">");
+  fprintf(stream, "<circle cx=\"%f\"  cy=\"%f\"  r=\"4\"/>\n", x+g*6,    y+g*12);
+  fprintf(stream, "<circle cx=\"%f\"  cy=\"%f\"  r=\"4\"/>\n", x+g*14,   y+g*9);
+  fprintf(stream, "<circle cx=\"%f\"  cy=\"%f\"  r=\"4\"/>\n", x+g*22.5, y+g*7.5);
+  fprintf(stream, "<circle cx=\"%f\"  cy=\"%f\"  r=\"4\"/>\n", x+g*31,   y+g*9);
+  fprintf(stream, "<circle cx=\"%f\"  cy=\"%f\"  r=\"4\"/>\n", x+g*39,   y+g*12);
+  fprintf(stream, "<path d=\"M %f,%f C %f,%f %f,%f  %f,%f\" />\n", x+g*9, y+g*26, x+g*17.5, y+g*24.5, x+g*30, y+g*24.5, x+g*36, y+g*26);
+  fprintf(stream, "<path d=\"M %f,%f C %f,%f %f,%f  %f,%f\" />\n", x+g*11.5, y+g*30, x+g*15, y+g*29, x+g*30, y+g*29, x+g*33.5, y+g*30);
+  fprintf(stream, "<path d=\"M %f,%f C %f,%f %f,%f  %f,%f\" />\n", x+g*12, y+g*33.5,  x+g*18, y+g*32.5, x+g*27, y+g*32.5, x+g*33, y+g*33.5);
+  fprintf(stream, "<path d=\"M %f,%f C %f,%f %f,%f  %f,%f\" />\n", x+g*11, y+g*38.5, x+g*17.5, y+g*39.5, x+g*27.5, y+g*39.5, x+g*34, y+g*38.5);
+  fprintf(stream, "<path d=\"M %f,%f L %f,%f L %f,%f\" style=\"fill:none\" />\n", x+g*9, y+g*26, x+g*7, y+g*14, x+g*14.4, y+g*25);
+  fprintf(stream, "<path d=\"M %f,%f L %f,%f L %f,%f\" style=\"fill:none\" />\n", x+g*14.4, y+g*25, x+g*14.5, y+g*11, x+g*19.8, y+g*24);
+  fprintf(stream, "<path d=\"M %f,%f L %f,%f L %f,%f\" style=\"fill:none\" />\n", x+g*19.8, y+g*24, x+g*22.5, y+g*9.5, x+g*25.2, y+g*24);
+  fprintf(stream, "<path d=\"M %f,%f L %f,%f L %f,%f\" style=\"fill:none\" />\n", x+g*25.2, y+g*24, x+g*30.5, y+g*11, x+g*30.6, y+g*25);
+  fprintf(stream, "<path d=\"M %f,%f L %f,%f L %f,%f\" style=\"fill:none\" />\n", x+g*30.6, y+g*25, x+g*38, y+g*14, x+g*36, y+g*26);
+  fprintf(stream, "<path d=\"M %f,%f C %f,%f %f,%f  %f,%f\" style=\"stroke-linecap:butt;\" />\n", x+g*9, y+g*26, x+g*9, y+g*28, x+g*10.5, y+g*28, x+g*11.5, y+g*30);
+  fprintf(stream, "<path d=\"M %f,%f C %f,%f %f,%f  %f,%f\" style=\"stroke-linecap:butt;\" />\n", x+g*36, y+g*26, x+g*36, y+g*28, x+g*34.5, y+g*28, x+g*33.5, y+g*30);
+  fprintf(stream, "<path d=\"M %f,%f C %f,%f %f,%f  %f,%f\" style=\"stroke-linecap:butt;\" />\n", x+g*11.5, y+g*30, x+g*12.5, y+g*31.5, x+g*12.5, y+g*31, x+g*12, y+g*33.5);
+  fprintf(stream, "<path d=\"M %f,%f C %f,%f %f,%f  %f,%f\" style=\"stroke-linecap:butt;\" />\n", x+g*33.5, y+g*30, x+g*32.5, y+g*31.5, x+g*32.5, y+g*31, x+g*33, y+g*33.5);
+  fprintf(stream, "<path d=\"M %f,%f C %f,%f %f,%f  %f,%f C %f,%f %f,%f  %f,%f\" style=\"stroke-linecap:butt;\" />\n", x+g*12, y+g*33.5, x+g*10.5, y+g*34.5, x+g*10.5, y+g*36, x+g*10.5, y+g*36, x+g*9, y+g*37.5, x+g*11, y+g*38.5, x+g*11, y+g*38.5);
+  fprintf(stream, "<path d=\"M %f,%f C %f,%f %f,%f  %f,%f C %f,%f %f,%f  %f,%f\" style=\"stroke-linecap:butt;\" />\n", x+g*33, y+g*33.5, x+g*34.5, y+g*34.5, x+g*34.5, y+g*36, x+g*34.5, y+g*36, x+g*36, y+g*37.5, x+g*34, y+g*38.5, x+g*34, y+g*38.5);
+  fprintf(stream, "</g>");
 }
 
 void draw_table(FILE *stream){
@@ -70,7 +90,7 @@ void draw_table(FILE *stream){
 
 /// ------------------ PATH FINDING FUNCTIONS ------------------
 
-unsigned min(unsigned x, unsigned y){
+unsigned minF(unsigned x, unsigned y){
   return (x < y) ? x : y;
 }
 
@@ -80,7 +100,7 @@ unsigned is_valid(unsigned x, unsigned y){
       return 0;
     }
   }
-  unsigned offset = min(x, y);
+  unsigned offset = minF(x, y);
 
   for (unsigned i = 0 ; i < offset ; i++){ // check diag 1
     if ( table[i + x - offset][i + y - offset] == 1 ){
@@ -88,7 +108,7 @@ unsigned is_valid(unsigned x, unsigned y){
     }
   }
   y = SIZE - y - 1;
-  offset = min(x, y);
+  offset = minF(x, y);
 
   for (unsigned i = 0 ; i < offset ; i++){ // check diag 2
     if ( table[i + x - offset][SIZE - (i + y - offset) - 1] == 1 ){
