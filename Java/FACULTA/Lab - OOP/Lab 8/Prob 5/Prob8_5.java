@@ -5,9 +5,9 @@ class MyStack {
     private int currentElements = 0;
     private Stack<Object> elements = new Stack<Object>();
 
-    public MyStack(int max) throws Exception{
+    public MyStack(int max) throws RuntimeException{
         if ( max >= 5000 ){
-            throw new Exception("Too Many Elements");
+            throw new RuntimeException("Too Many Elements");
         }
 
         this.MAX_ELEMENTS = max;
@@ -58,8 +58,7 @@ class MyStack {
 
 public class Prob8_5 {
     public static void main(String[] args){
-        try {
-            MyStack st = new MyStack(3);
+            MyStack st = new MyStack(24324123);
 
             st.push(1);
             System.out.println(st);
@@ -81,9 +80,5 @@ public class Prob8_5 {
             System.out.println(st);
             st.pop();
             System.out.println(st);
-        }
-        catch (Exception e){
-            System.out.println(e);
-        }
     }
 }

@@ -48,7 +48,7 @@ void draw_queen(FILE *stream, unsigned drawing, unsigned i, unsigned j){
   fprintf(stream, "<circle cx=\"%f\"  cy=\"%f\"  r=\"4\"/>\n", x+g*39,   y+g*12);
   fprintf(stream, "<path d=\"M %f,%f C %f,%f %f,%f  %f,%f\" />\n", x+g*9, y+g*26, x+g*17.5, y+g*24.5, x+g*30, y+g*24.5, x+g*36, y+g*26);
   fprintf(stream, "<path d=\"M %f,%f C %f,%f %f,%f  %f,%f\" />\n", x+g*11.5, y+g*30, x+g*15, y+g*29, x+g*30, y+g*29, x+g*33.5, y+g*30);
-  fprintf(stream, "<path d=\"M %f,%f C %f,%f %f,%f  %f,%f\" />\n", x+g*12, y+g*33.5,  x+g*18, y+g*32.5, x+g*27, y+g*32.5, x+g*33, y+g*33.5);
+  fprintf(stream, "<path d=\"M %f,%f C %f,%f %f,%f  %f,%f\" />\n", x+g*12, y+g*33.5, x+g*18, y+g*32.5, x+g*27, y+g*32.5, x+g*33, y+g*33.5);
   fprintf(stream, "<path d=\"M %f,%f C %f,%f %f,%f  %f,%f\" />\n", x+g*11, y+g*38.5, x+g*17.5, y+g*39.5, x+g*27.5, y+g*39.5, x+g*34, y+g*38.5);
   fprintf(stream, "<path d=\"M %f,%f L %f,%f L %f,%f\" style=\"fill:none\" />\n", x+g*9, y+g*26, x+g*7, y+g*14, x+g*14.4, y+g*25);
   fprintf(stream, "<path d=\"M %f,%f L %f,%f L %f,%f\" style=\"fill:none\" />\n", x+g*14.4, y+g*25, x+g*14.5, y+g*11, x+g*19.8, y+g*24);

@@ -2,46 +2,66 @@
 
 using namespace std;
 
-template <size_t N>
 class Stack {
     private:
-        int data[N];
-        unsigned size = 0;
+        size_t _size;
+        const size_t MAX_SIZE;
+        int *data;
 
     public:
+        // CONSTRUCTOR
+        Stack(const size_t max_size)
+            : _size(0), MAX_SIZE(max_size), data(new int[max_size])
+        {}
+
+        // DESTRUCTOR
+        ~Stack(){
+            delete [] data;
+        }
+
+        // FULL & EMPTY
         bool full(){
-            return ( size == N );
+            return ( _size == MAX_SIZE );
         }
 
         bool empty(){
-            return ( size == 0 );
+            return ( _size == 0 );
         }
 
+        // PUSH & POP
         void push(int nr){
-            if ( !full() ){
-                cout << "Push -> " << nr << "\n";
-                data[size] = nr;
-                size++;
-            }
-            else {
+            if ( full() ) {
                 cerr << "Error: Stack Full\n";
+                exit(0);
             }
+
+            data[_size] = nr;
+            _size++;
         }
 
         int pop(){
-            if ( !empty() ){
-                size--;
-                cout << "Pop -> " << data[size] << "\n";
-                return data[size];
+            if ( empty() ) {
+                cerr << "ERROR: STACK EMPTY\n";
+                exit(0);
             }
-            else {
-                cerr << "Error: Stack Empty\n";
-            }
+
+            _size--;
+            return data[_size];
         }
 
+        // SIZES
+        size_t size(){
+            return _size;
+        }
+
+        const size_t max_size(){
+            return MAX_SIZE;
+        }
+
+        // PRINT
         void print(){
             cout << "Stack: ";
-            for (unsigned index = 0 ; index < size ; index++){
+            for (size_t index = 0 ; index < _size ; index++){
                 cout << data[index] << " ";
             }
             cout << "\n";
@@ -50,7 +70,7 @@ class Stack {
 
 int main(){
     cout << "STACK\n";
-    Stack<3> s;
+    Stack s(3);
     s.push(5);
     s.push(7);
     s.push(3);

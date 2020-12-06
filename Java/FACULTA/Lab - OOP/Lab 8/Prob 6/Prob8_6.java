@@ -15,14 +15,20 @@ public class Prob8_6 {
     public static void main(String[] args) throws Exception{
         MyException e1 = new MyException("exception 1");
         System.out.println(e1);
+        System.out.println(e1.getLocalizedMessage());
+        System.out.println(e1.getStackTrace());
         System.out.println(MyException.getNrInstances());
 
-        MyException e2 = new MyException("exception 2");
-        System.out.println(e2);
+        e1 = new MyException("exception 2");
+        System.out.println(e1);
+        System.out.println(e1.getLocalizedMessage());
+        System.out.println(e1.getStackTrace());
         System.out.println(MyException.getNrInstances());
 
-        MyException e3 = new MyException("exception 3");
-        System.out.println(e3);
+        e1 = new MyException("exception 3");
+        System.out.println(e1);
+        System.out.println(e1.getLocalizedMessage());
+        System.out.println(e1.getStackTrace());
         System.out.println(MyException.getNrInstances());
     }
 }
