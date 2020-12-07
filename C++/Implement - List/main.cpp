@@ -3,76 +3,108 @@
 
 using namespace std;
 
+template <class class_t>
 class ListNode {
     public:
-        int val;
+        class_t data;
         ListNode *next;
 
-        ListNode(int val){
-            this->val = val;
-            next = NULL;
-        }
+        ListNode(int data):
+            data(data),
+            next(NULL)
+        {}
 
-        void print(){
-            cout << val;
+        friend ostream& operator<<(ostream &out, const ListNode <class_t> &obj){
+            out << obj.data;
+
+            return out;
         }
 };
 
+template <class class_t>
 class List {
     public:
-        ListNode *head;
-        ListNode *tail;
+        ListNode <class_t> *head;
+        ListNode <class_t> *tail;
         int size;
 
-        List(int val){
-            head = new ListNode(val);
-            tail = head;
-            size = 1;
+        // CONSTRUCTOR
+        List():
+            head(NULL),
+            tail(NULL),
+            size(0)
+        {}
+
+        // EMPTY
+        bool empty(){
+            return ( size == 0 );
         }
 
-        void push_back(int val){
-            tail->next = new ListNode(val);
-            tail = tail->next;
-
+        // PUSH
+        void push_back(class_t data){
+            if ( empty() ){
+                head = new ListNode <class_t>(data);
+                tail = head;
+            }
+            else {
+                tail->next = new ListNode <class_t>(data);
+                tail = tail->next;
+            }
             size++;
         }
 
-        int pop_back(){
-            if ( size == 0 ){
+        void push_front(class_t data){
+            if ( empty() ){
+                head = new ListNode <class_t>(data);
+                tail = head;
+            }
+            else {
+                data.next = head;
+                head = new ListNode <class_t>(data);
+            }
+            size++;
+        }
+
+        // POP
+        class_t pop_back(){
+            if ( empty() ){
+                cerr << "LIST EMPTY";
                 exit(0);
             }
 
-            ListNode *curr = head;
+            ListNode <class_t> *curr = head;
             while ( curr->next != tail ){
                 curr = curr->next;
             }
-            int val = tail->val;
-            delete tail;
+            class_t data = tail->data;
             tail = curr;
             tail->next = NULL;
 
             size--;
 
-            return val;
+            return data;
         }
 
-        void print(){
-            for (ListNode *curr = head ; curr != NULL ; curr = curr->next){
-                curr->print();
-                cout << " ";
+        // COUT
+        friend ostream& operator<<(ostream &out, const List <class_t> &obj){
+            for (ListNode <class_t> *curr = obj.head ; curr != NULL ; curr = curr->next){
+                out << *curr << "\n";
             }
-            cout << "\n";
+            out << "\n";
+
+            return out;
         }
 };
 
 int main(){
-    List myList(3);
+    List <unsigned> myList;
 
     myList.push_back(4);
     myList.push_back(5);
+    myList.push_back(6);
     myList.pop_back();
 
-    myList.print();
+    cout << myList;
 
     return 0;
 }

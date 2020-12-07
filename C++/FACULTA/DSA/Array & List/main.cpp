@@ -39,10 +39,10 @@ class PassList { // PassNode LIST
         PassNode *tail;
         size_t size = 0;
 
-        PassList(){
-            head = NULL;
-            tail = NULL;
-        }
+        PassList():
+            head(NULL),
+            tail(NULL)
+        {}
 
         void push_back(PassNode newPassNode){
             if ( isEmpty() ){
@@ -135,20 +135,25 @@ class Bus { // Bus
         // CONSTRUCTORS
         Bus(){}
 
-        Bus(string name, unsigned weight){
-            this->name = name;
-            this->weight = weight;
-        }
+        Bus(string name, unsigned weight):
+            name(name), 
+            weight(weight)
+        {}
 
-        Bus(string name, unsigned weight, PassList passengers){
-            this->name = name;
-            this->weight = weight;
-            this->passengers = passengers;
+        Bus(string name, unsigned weight, PassList passengers):
+            name(name), 
+            weight(weight), 
+            passengers(passengers)
+        {}
+
+        void print(){
+            cout << "Name: " << name << "\n";
+            cout << "Weight: " << weight << "\n";
         }
 };
 
 class Company { // Bus ARRAY
-    private:
+    public:
         bool isFull(){
             return ( size == SIZE_MAX );
         }
@@ -159,14 +164,17 @@ class Company { // Bus ARRAY
 
     public:
         Bus *fleet;
-        size_t size = 0;
-        size_t MAX_SIZE;
+        size_t size;
+        const size_t MAX_SIZE;
 
-        Company(size_t size){
-            fleet = new Bus[size];
-            MAX_SIZE = size;
-        }
+        // CONSTRUCTOR
+        Company(const size_t max_size):
+            fleet(new Bus[max_size]),
+            size(0),
+            MAX_SIZE(max_size)
+        {}
 
+        // ADDING BUSSES
         void push_back(Bus newBus){
             if ( isFull() ){
                 cerr << "ERROR: ARRAY FULL";
@@ -176,43 +184,41 @@ class Company { // Bus ARRAY
             size++;
         }
 
-        void insert(Bus newBus){
+        void insert_bus(Bus newBus){
             if ( isFull() ){
                 cerr << "ERROR: ARRAY FULL";
                 exit(0);
             }
-            for (size_t index = size - 1 ; index > 0 ; index--){
-                if ( fleet[index].weight > newBus.weight ){
-
+            size_t index;
+            for ( index = size ; index > 0 ; index--){
+                if ( fleet[index-1].weight > newBus.weight ){
+                    break;
                 }
+                fleet[index] = fleet[index-1];
+            }
+            fleet[index] = newBus;
+            size++;
+        }
+
+        // PRINT
+        void print(){
+            for (size_t index = 0 ; index < size ; index++){
+                fleet[index].print();
+                cout << "\n";
             }
         }
 };
 
 int main(){
-    PassList myList;
+    Company c(5);
 
-    // myList.push_back(PassNode("Gion", 4));
-    // myList.push_back(PassNode("Gion", 4));
-    // myList.push_back(PassNode("Gion", 4));
-    myList.insert(PassNode("Gion", 4), 0);
-    myList.print_details();
-    cout << "```````````````````````````\n";
-    myList.insert(PassNode("Dan", 6), 1);
-    myList.print_details();
-    cout << "```````````````````````````\n";
-    myList.insert(PassNode("Yoo", 16), 1);
-    myList.print_details();
-    cout << "```````````````````````````\n";
-    myList.insert(PassNode("Pupu", 4), 2);
-    myList.print_details();
-    cout << "```````````````````````````\n";
-    myList.insert(PassNode("Pipi", 12), 0);
-    myList.print_details();
-    cout << "```````````````````````````\n";
-    myList.insert(PassNode("Hatz", 33), 2);
-    myList.print_details();
-    cout << "```````````````````````````";
+    c.insert_bus(Bus("pipi", 12));
+    c.insert_bus(Bus("pupu", 18));
+    c.insert_bus(Bus("hatz", 33));
+    c.insert_bus(Bus("gion", 55));
+    c.insert_bus(Bus("mema", 1));
+
+    c.print();
 
     return 0;
 }
