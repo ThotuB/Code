@@ -35,6 +35,10 @@ class List {
             size(0)
         {}
 
+        ~List(){
+            clear();
+        }
+
         // EMPTY
         bool empty(){
             return ( size == 0 );
@@ -78,11 +82,23 @@ class List {
             }
             class_t data = tail->data;
             tail = curr;
-            tail->next = NULL;
+            delete tail->next;
 
             size--;
 
             return data;
+        }
+
+        // CLEAR
+        
+        void clear(){
+            ListNode <class_t> *temp;
+
+            while ( head != NULL ){
+                temp = head;
+                head = head->next;
+                delete temp;
+            }
         }
 
         // COUT

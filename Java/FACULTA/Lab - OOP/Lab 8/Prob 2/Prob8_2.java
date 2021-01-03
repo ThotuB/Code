@@ -16,7 +16,14 @@ class DivisionByZeroException extends RuntimeException {
 public class Prob8_2 {
     public static void main(String[] args){
         Operation.performDivision(4, 3);
-        Operation.performDivision(4, 0);
+        try {
+            Operation.performDivision(4, 0);
+        }
+        catch ( Exception e ){
+            System.out.println(e);
+        }
+
+        System.out.println("plm");
 
         // int[] c = new int[3];
         // System.out.println(c[5]);

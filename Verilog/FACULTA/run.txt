@@ -19,7 +19,7 @@ quit -sim
 # empty the work library if present
 if [file exists ".../work"] {vdel -all}
 #create a new work library
-vlib work
+vlib .../work
 
 # run the compiler
 if [catch "eval vlog $sourcefiles"] {

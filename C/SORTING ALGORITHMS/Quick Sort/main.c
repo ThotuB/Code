@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <stdbool.h>
 
 #define SIZE 7
 
@@ -50,34 +51,36 @@ void print_array(int *Arr){
     printf("\n");
 }
 
+bool compare(int a, int b){
+    comparisons++;
+    return ( a < b );
+}
+
 void swap(int *a, int *b){
-    int aux = *a;
+    int aux = (*a);
     *a = *b;
     *b = aux;
     swaps++;
 }
 
 void quick_sort(int *Arr, unsigned left, unsigned right){
-    unsigned i = left;
-    unsigned j = right;
-    unsigned pivotPos = (left+right)/2;
-    int pivot = Arr[pivotPos];
+    unsigned index = 0;
+    int pivot = Arr[right];
 
-    if ( left != right ){
-      do {
-          while (Arr[i] < pivot) i++;
-          while (Arr[j] > pivot) j--;
-          comparisons += i - left + right - j;
-          printf("%d - %d :%d(%d) <-> %d(%d)\n",left, right, Arr[i],i, Arr[j],j);
-          if ( i <= j ){
-              swap(&Arr[i], &Arr[j]);
-              i++; j--;
-          }
-          print_array(Arr);
-      }while (i <= j);
+    if ( left < right ){
+        for (unsigned i = 0 ; i < right - 1 ; i++){
+            if ( compare(Arr[i], pivot) ){
+                swap(&Arr[i], &Arr[index]);
+                index++;
+            }
+        }
 
-      quick_sort(Arr, left, j);
-      quick_sort(Arr, i, right);
+        swap(&Arr[index], &Arr[right]);
+
+        print_array(Arr);
+
+        quick_sort(Arr, left, index - 1);
+        quick_sort(Arr, index + 1, right);
     }
 }
 

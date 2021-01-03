@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import javafx.application.Application;
 
 class T {
     public static String ab(int tabs){
@@ -842,7 +843,6 @@ class Client {
             // ROUND END
             game.discard();
             game.refill();
-            System.out.println(game.toObjectString(0));
 
             System.out.print("Another round? (Y): ");
             goNext = ( scan.nextLine().equalsIgnoreCase("Y") );

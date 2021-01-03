@@ -4,12 +4,25 @@
         "xstring": "cpp",
         "utility": "cpp",
         "iostream": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "iosfwd": "cpp",
+        "ios": "cpp",
+        "system_error": "cpp",
+        "type_traits": "cpp",
+        "xlocmon": "cpp",
+        "xtr1common": "cpp",
+        "algorithm": "cpp",
+        "xiosbase": "cpp",
+        "xlocale": "cpp",
+        "stack": "cpp",
+        "ostream": "cpp",
+        "cmath": "c"
     },
     "files.exclude": {
         "**/.classpath": true,
         "**/.project": true,
         "**/.settings": true,
         "**/.factorypath": true
-    }
+    },
+    "python.pythonPath": "C:\\Users\\bogda\\AppData\\Local\\Programs\\Python\\Python39\\python.exe"
 }
