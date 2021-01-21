@@ -210,7 +210,6 @@ public:
                 if ( compare(Arr[i], Arr[i+1]) > 0 ){
                     swap(Arr[i], Arr[i+1]);
                 }
-                comparisons++;
             }
             right--;
 
@@ -218,7 +217,6 @@ public:
                 if ( compare(Arr[i-1], Arr[i]) ){
                     swap(Arr[i-1], Arr[i]);
                 }
-                comparisons++;
             }
             left++;
             Arr.print();

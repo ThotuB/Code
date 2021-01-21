@@ -1,0 +1,70 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/bogda/OneDrive/Documents/GitHub/Code/Verilog/FACULTA/EXERCICES/FSM - One Hot
+vd_ff
+Z1 !s110 1609997813
+!i10b 1
+!s100 WKE2`;3N@INMo`d;a;CWA1
+IkmVlgodihKI?6fL4bAR<:2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1609995355
+8d_ff.v
+Fd_ff.v
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1609997813.000000
+Z5 !s107 d_ff.v|fsm.v|
+Z6 !s90 -reportprogress|300|fsm.v|d_ff.v|
+!i113 1
+Z7 tCvgOpt 0
+vfsm
+R1
+!i10b 1
+!s100 O8Ajm?[]4Q5A3D<5?I?CK2
+I0kfP:MWH9@7gJa[]NHXoh0
+R2
+R0
+Z8 w1609997793
+Z9 8fsm.v
+Z10 Ffsm.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+vfsm_tb
+R1
+!i10b 1
+!s100 DI^o_7TQA4;8IY;?@5zF83
+IUYI>oN@4:S[>8gzK`h0O22
+R2
+R0
+R8
+R9
+R10
+L0 85
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
