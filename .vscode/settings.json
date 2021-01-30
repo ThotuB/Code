@@ -47,7 +47,11 @@
         "xmemory": "cpp",
         "xstddef": "cpp",
         "xtree": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "bitset": "cpp",
+        "ctime": "cpp",
+        "iomanip": "cpp",
+        "xloctime": "cpp"
     },
     "files.exclude": {
         "**/.classpath": true,

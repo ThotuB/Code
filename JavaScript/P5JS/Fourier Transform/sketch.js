@@ -7,7 +7,7 @@ let xCoord = [];
 let xFourier = [];
 let yFourier = [];
 
-let xScale = 10;
+let xScale = 1;
 let xOffset = 600;
 
 let graphHeight = 300;
@@ -15,10 +15,10 @@ let graphHeight = 300;
 function setup(){
     createCanvas(2000, 1200);
 
-    //yCoord = [300, 300, 300, -300, -300, -300, 300, 300, 300, -300, -300, -300];
-    for (let i = 0 ; i < 100 ; i++){
-        yCoord[i] = graphHeight * random(-1, 1);
-    }
+    yCoord = [300, 300, 300, -300, -300, -300, 300, 300, 300, -300, -300, -300];
+    // for (let i = 0 ; i < 100 ; i++){
+    //     yCoord[i] = graphHeight * random(-1, 1);
+    // }
 
     yFourier = discrete_fourier_transform(yCoord);
     yFourier.sort( (a, b) => b.ampl - a.ampl);
@@ -70,5 +70,5 @@ function draw(){
     }
 
     //let dt = 2*PI/yCoord.length;
-    time -= 0.01;
+    time -= 0.001;
 }

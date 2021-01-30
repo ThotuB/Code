@@ -15,14 +15,12 @@ function setup(){
     lenX = (width-100)/SIZE;
     lenY = (height-150)/SIZE;
     
-    // let resetBtn = createButton("RESET");
-    // resetBtn.mousePressed(resetWorstCase);
-    
     for (let i = 0 ; i < SIZE ; i++){
-        Arr[i] = new SortNode( SIZE-i );
+        Arr[i] = new SortNode( Math.ceil( Math.random() * SIZE ) );
+        //Arr[i] = new SortNode( SIZE-i );
     }
 
-    //bubble_sort1();
+    bubble_sort1();
     //bubble_sort2();
     //bubble_sort3()
     //cocktail_shaker_sort();

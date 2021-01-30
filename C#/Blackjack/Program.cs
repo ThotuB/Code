@@ -56,20 +56,20 @@ namespace Blackjack
         {
             for (int i = 0; i < 2; i++)
             {
-                for (Player player: players)
+                foreach (Player player in players)
                 {
                     player.deal(deck.draw(), 0);
                 }
                 this.dealer.deal(deck.draw(), (i == 0));
             }
-            for (Player player: players)
+            foreach (Player player in players)
             {
                 player.checkSplit();
             }
         }
 
         // PLAYER MOVES
-        public boolean betPlayer(Player player, int index, int amount)
+        public bool betPlayer(Player player, int index, int amount)
         {
             return player.makebet(index, amount);
         }
@@ -86,7 +86,7 @@ namespace Blackjack
             player.checkSplit();
         }
 
-        public boolean doubledownPlayer(Player player, int index)
+        public bool doubledownPlayer(Player player, int index)
         {
             Hand hand = player.getHand(index);
             if (this.betPlayer(player, index, hand.getBet()))
@@ -124,9 +124,9 @@ namespace Blackjack
 
 
         // DISCARD
-        public void discard()
+        public void discard_all()
         {
-            for (Player player: players)
+            foreach (Player player in players)
             {
                 this.discardPlayer(player);
             }
@@ -135,9 +135,9 @@ namespace Blackjack
 
         public void discardPlayer(Player player)
         {
-            for (Hand hand: player.getHands())
+            foreach (Hand hand in player.getHands())
             {
-                for (Card card: hand.getCards())
+                foreach (Card card in hand.getCards())
                 {
                     this.discard.add(card);
                 }
@@ -147,7 +147,7 @@ namespace Blackjack
 
         public void discardDealer()
         {
-            for (Card card: this.dealer.getHand().getCards())
+            foreach (Card card in this.dealer.getHand().getCards())
             {
                 this.discard.add(card);
             }
@@ -157,29 +157,11 @@ namespace Blackjack
         // REFILL
         public void refill()
         {
-            for (Card card: this.discard.getCards())
+            foreach (Card card in this.discard.getCards())
             {
                 this.deck.add(card);
             }
             this.discard.clear();
-        }
-
-        // TOSTRING()
-        public String toObjectString(int t)
-        {
-            String printString = "Game {\n";
-            printString += T.ab(t + 1) + "deck => " + deck.toObjectString(t + 1) + "\n";
-            printString += T.ab(t + 1) + "discard => " + discard.toObjectString(t + 1) + "\n";
-            printString += T.ab(t + 1) + "dealer => " + dealer.toObjectString(t + 1) + "\n";
-            printString += T.ab(t + 1) + "players => Player[] {\n";
-            for (Player player: players)
-            {
-                printString += T.ab(t) + player.toObjectString(t + 2) + "\n";
-            }
-            printString += T.ab(t + 1) + "}\n";
-            printString += T.ab(t) + "}";
-
-            return printString;
         }
     }
 
@@ -200,7 +182,7 @@ namespace Blackjack
         }
 
         // MOVES
-        public void deal(Card card, boolean hidden)
+        public void deal(Card card, bool hidden)
         {
             this.hand.add(card, hidden);
         }
@@ -231,18 +213,6 @@ namespace Blackjack
         {
             this.hand.discard();
         }
-
-        // TOSTRING()
-        public String toObjectString(int t)
-        {
-            String printString = "Dealer {\n";
-            printString += T.ab(t + 1) + "name: Dealer\n";
-            printString += T.ab(t + 1) + "money: ∞\n";
-            printString += T.ab(t + 1) + this.hand.toObjeString(t + 1);
-            printString += T.ab(t) + "}";
-
-            return printString;
-        }
     }
 
     class Player
@@ -254,7 +224,7 @@ namespace Blackjack
 
         private ArrayList<Hand> hands;
 
-        private boolean splitFlag;
+        private bool splitFlag;
 
         Player(String id, String name, int money)
         {
@@ -284,13 +254,13 @@ namespace Blackjack
             return this.hands;
         }
 
-        public boolean canSplit()
+        public bool canSplit()
         {
             return this.splitFlag;
         }
 
         // BETS
-        public boolean makebet(int index, int amount)
+        public bool makebet(int index, int amount)
         {
             if (0 <= amount && amount <= this.money && amount % 2 == 0)
             {
@@ -326,7 +296,7 @@ namespace Blackjack
         }
 
         // MOVES
-        public void deal(Card card, int index, boolean hidden)
+        public void deal(Card card, int index, bool hidden)
         {
             this.hands.get(index).add(card, hidden);
         }
@@ -361,7 +331,7 @@ namespace Blackjack
         // DISCARD
         public void discard()
         {
-            for (Hand hand:this.hands)
+            foreach (Hand hand in this.hands)
             {
                 hand.discard();
             }
@@ -370,26 +340,6 @@ namespace Blackjack
             this.hands.clear();
             this.hands.add(new Hand());
             this.splitFlag = false;
-        }
-
-        // TOSTRING()
-        public String toObjectString(int t)
-        {
-            String printString = T.ab(t) + "Player {\n";
-            printString += T.ab(t + 1) + "id: " + this.id + "\n";
-            printString += T.ab(t + 1) + "name: " + this.name + "\n";
-            printString += T.ab(t + 1) + "money: " + this.money + "\n";
-            printString += T.ab(t + 1) + "totalBet: " + this.totalBet + "\n";
-            printString += T.ab(t + 1) + "splitFlag: " + this.splitFlag + "\n";
-            printString += T.ab(t + 1) + "hands => Hand[] {\n";
-            for (Hand hand: hands)
-            {
-                printString += T.ab(t + 2) + hand.toObjeString(t + 2);
-            }
-            printString += T.ab(t + 1) + "}\n";
-            printString += T.ab(t) + "}";
-
-            return printString;
         }
     }
 
@@ -401,13 +351,13 @@ namespace Blackjack
         private ArrayList<Card> cards;
         private int points;
 
-        private boolean hiddenCardFlag;
-        private boolean aceCardFlag;
+        private bool hiddenCardFlag;
+        private bool aceCardFlag;
 
-        public static final int NONE = 0;
-        public static final int BUST = 1;
-        public static final int STAND = 2;
-        public static final int BLACKJACK = 3;
+        public const int NONE = 0;
+        public const int BUST = 1;
+        public const int STAND = 2;
+        public const int BLACKJACK = 3;
         private int outcome;
 
         public Hand()
@@ -449,17 +399,17 @@ namespace Blackjack
             return this.outcome;
         }
 
-        public boolean isBust()
+        public bool isBust()
         {
             return (this.outcome == BUST);
         }
 
-        public boolean isStand()
+        public bool isStand()
         {
             return (this.outcome == STAND);
         }
 
-        public boolean hasBlackjack()
+        public bool hasBlackjack()
         {
             return (this.outcome == BLACKJACK);
         }
@@ -486,13 +436,13 @@ namespace Blackjack
         }
 
         // BETS
-        public void bet(int amount)
+        public void make_bet(int amount)
         {
             this.bet += amount;
         }
 
         // DRAW CARD
-        public void add(Card card, boolean hidden)
+        public void add(Card card, bool hidden)
         {
             this.cards.add(card);
             if (!hidden)
@@ -583,37 +533,6 @@ namespace Blackjack
 
             this.outcome = NONE;
         }
-
-        // TOSTRING()
-        public String toObjeString(int t)
-        {
-            String printString = "Hand {\n";
-            printString += T.ab(t + 1) + "bet: " + this.bet + "\n";
-            printString += T.ab(t + 1) + "cards => Card[] {\n";
-            for (Card c: cards)
-            {
-                printString += T.ab(t + 2) + c.toObjectString() + "\n";
-            }
-            printString += T.ab(t + 1) + "}\n";
-            printString += T.ab(t + 1) + "points: " + this.points;
-            if (this.hiddenCardFlag)
-            {
-                printString += "?";
-            }
-            printString += "\n";
-            printString += T.ab(t + 1) + "outcome: ";
-            switch (this.outcome)
-            {
-                case NONE: printString += "NONE"; break;
-                case BUST: printString += "BUST"; break;
-                case STAND: printString += "STAND"; break;
-                case BLACKJACK: printString += "BLACKJACK"; break;
-            }
-            printString += "\n";
-            printString += T.ab(t) + "}\n";
-
-            return printString;
-        }
     }
 
     /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -629,7 +548,7 @@ namespace Blackjack
         }
 
         // GETTERS
-        public int size()
+        public int get_size()
         {
             return this.size;
         }
@@ -689,35 +608,19 @@ namespace Blackjack
             this.cards.clear();
             this.size = 0;
         }
-
-        // TOSTRING()
-        public String toObjectString(int t)
-        {
-            var printString = "Deck {\n";
-            printString += T.ab(t + 1) + "size: " + this.size + "\n";
-            printString += T.ab(t + 1) + "cards => Card[] {\n";
-            for (Card c: this.cards)
-            {
-                printString += T.ab(t + 2) + c.toObjectString() + "\n";
-            }
-            printString += T.ab(t + 1) + "}\n";
-            printString += T.ab(t) + "}";
-
-            return printString;
-        }
     }
 
     /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     class Card
     {
-        private static final String[] SUITS = {"♠️", "♥️", "♣", "♦️"};
-    private static final String[] NUMBS = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
-    private int suit;
+        private const String[] SUITS = {"♠️", "♥️", "♣", "♦️"};
+        private const String[] NUMBS = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
+        private int suit;
         private int number;
 
-        private boolean hiddenFlag;
+        private bool hiddenFlag;
 
-        public Card(int suit, int number, boolean hidden)
+        public Card(int suit, int number, bool hidden)
         {
             this.suit = suit;
             this.number = number;
@@ -743,7 +646,7 @@ namespace Blackjack
             return this.number + 1;
         }
 
-        public boolean isHidden()
+        public bool isHidden()
         {
             return this.hiddenFlag;
         }
