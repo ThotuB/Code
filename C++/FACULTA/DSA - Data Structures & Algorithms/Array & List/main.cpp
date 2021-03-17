@@ -196,11 +196,10 @@ class Bus {
 
             // WORKING
             if ( curr == passHead ){
-                PassNode *temp = passHead;
                 passHead = passHead->next;
 
-                cout << "DELETING PASS: " << temp->name << "\n";
-                delete temp;
+                cout << "DELETING PASS: " << curr->name << "\n";
+                delete curr;
             }
             else {
                 prev->next = curr->next;

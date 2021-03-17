@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch BinTree",
+            "request": "launch",
+            "mainClass": "BinTree",
+            "projectName": "Code_f13620ae"
+        },
+        {
+            "type": "java",
+            "name": "Launch TreeProb",
+            "request": "launch",
+            "mainClass": "TreeProb",
+            "projectName": "Code_f13620ae"
+        },
+        {
+            "type": "java",
+            "name": "Launch Tree",
+            "request": "launch",
+            "mainClass": "Tree",
+            "projectName": "Code_f13620ae"
+        },
+        {
+            "type": "java",
             "name": "Launch Jury",
             "request": "launch",
             "mainClass": "Jury",

@@ -2,8 +2,8 @@
 #include "bits.h"
 #include <string>
 
-#define XBITS 10
-#define YBITS 8
+#define XBITS 6
+#define YBITS 6
 #define LOGBITS 4
 
 using namespace std;
@@ -27,5 +27,5 @@ ISINT:      if ( integers ) {Q.RSH(A[0]); A.RSH(A[YBITS-1]); goto COUT;}
 }
 
 int main(){
-    Booth(182, 0, -91, 0, 1);
+    Booth(-19, 0, -13, 0, 1);
 }

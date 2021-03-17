@@ -51,7 +51,8 @@
         "bitset": "cpp",
         "ctime": "cpp",
         "iomanip": "cpp",
-        "xloctime": "cpp"
+        "xloctime": "cpp",
+        "queue": "cpp"
     },
     "files.exclude": {
         "**/.classpath": true,
@@ -59,5 +60,5 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
-    "python.pythonPath": "C:\\Users\\bogda\\AppData\\Local\\Programs\\Python\\Python39\\python.exe"
+    "python.pythonPath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\Python37_64\\python.exe"
 }

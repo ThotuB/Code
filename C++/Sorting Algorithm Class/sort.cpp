@@ -406,7 +406,7 @@ public:
         reset();
         cout << name << "\n";
         Arr.print();
-        algorithm(Arr, 0, Arr.size()-1, 3 );
+        algorithm(Arr, 0, Arr.size()-1, 2 );
         print();
     }
 
@@ -522,7 +522,7 @@ string BucketSort::name = "BUCKET SORT";
 
 int main(){
     ifstream file("arr.txt");
-    unsigned size = 20;
+    unsigned size = 5;
     bool choice = false;
 
     // BubbleSort1::sort(Array<int>(size, choice));
@@ -530,10 +530,10 @@ int main(){
     // CocktailShakerSort::sort(Array<int>(size, choice));
     // InsterionSort::sort(Array<int>(size, choice));
     // SelectionSort::sort(Array<int>(size, choice));
-    ShellSort::sort(Array<int>(size, choice));
+    //ShellSort::sort(Array<int>(size, file));
     // QuickSort::sort(Array<int>(size, choice));
     // DirectRadixSort::sort(Array<int>(size, choice));
-    // ExchangeRadixSort::sort(Array<int>(size, choice));
+    ExchangeRadixSort::sort(Array<int>(size, file));
     //BinSort::sort(Array<int>(size, choice));
     // BucketSort::sort(Array<int>(size, choice));
 
