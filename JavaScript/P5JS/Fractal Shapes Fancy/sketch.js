@@ -1,5 +1,5 @@
 const ITER_MAX = 50;
-const ORDER = 5;
+const ORDER = 3;
 
 let CC_LENGTH;
 let SIDE_LENGTH;
@@ -53,5 +53,5 @@ function draw(){
     let shape = new Shape(ORDER, width/2, height/2, SIDE_LENGTH, -PI/2);
 
     fractal(shape, value);
-    value += BIG;
+    value += SMOL;
 }

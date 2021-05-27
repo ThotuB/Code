@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define NO_DISKS 10 // number of disks - works even for 4+ ( wastes memory )
+#define NO_DISKS 5 // number of disks - works even for 4+ ( wastes memory )
 #define SCALE 10 // scale factor - default: 10
 
 #define CALL_HEIGHT SCALE * 5
@@ -40,7 +40,7 @@ void draw_call(FILE *stream, unsigned branch, int diskNr, char fromPeg, char toP
   unsigned y = drawing * (CALL_HEIGHT + CALL_SPACING_Y);
 
   // HANOI call printing
- fprintf(stream, "<rect x=\"%u\" y=\"%u\" width=\"%u\" height=\"%u\" stroke-width=\"1\" stroke=\"black\" fill=\"rgb(255,255,0)\" />\n", x, y, CALL_WIDTH, CALL_HEIGHT);
+ fprintf(stream, "<rect x=\"%u\" y=\"%u\" width=\"%u\" height=\"%u\" stroke-width=\"1\" stroke=\"black\" fill=\"rgb(200,30,200)\" />\n", x, y, CALL_WIDTH, CALL_HEIGHT);
  fprintf(stream, "<text x=\"%u\" y=\"%u\" fill=\"black\" class=\"text\">HANOI(%u, %c, %c, %c)</text>\n", x + CALL_WIDTH/10, y + CALL_HEIGHT/2 + TEXT_SIZE/2, diskNr, fromPeg, toPeg, auxPeg);
 
   for (unsigned i = 0 ; i < NO_DISKS - branch ; i++){

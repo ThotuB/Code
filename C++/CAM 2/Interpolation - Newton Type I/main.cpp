@@ -100,7 +100,6 @@ void get_yv(){
       yv[i] += poly_coefs[j] * q[i][j];
     }
   }
-
 }
 
 

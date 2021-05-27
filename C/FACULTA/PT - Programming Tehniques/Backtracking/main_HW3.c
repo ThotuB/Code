@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define SIZE 5 // SIZE x SIZE table - default: 8
+#define SIZE 8 // SIZE x SIZE table - default: 8
 #define QUEENS SIZE
 
 typedef struct _coord {

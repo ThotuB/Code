@@ -37,9 +37,9 @@ class Matrix {
     }
 
     // OPERATIONS
-    public void add(Matrix Mat){
-        if ( this.rows() != Mat.rows() || )
-    }
+//    public void add(Matrix Mat){
+//        if ( this.rows() != Mat.rows() || )
+//    }
 
     // TOSTRING & EQUALS
     public String toString(){
@@ -56,7 +56,7 @@ class Matrix {
     public boolean equals(Object o){
         if ( o instanceof Matrix ){
             if ( rows == ((Matrix)o).rows() && cols == ((Matrix)o).cols() ){
-                return data.equals( ((Matrix)o).getAll() );
+                //return data.equals( ((Matrix)o).getAll() );
             }
         }
 

@@ -228,6 +228,10 @@ void addAnimals(animal_t **database, unsigned *size){
     }
 }
 
+void petAnimal(){
+    printf("Animal is happy now! UwU\n");
+}
+
 void removeAnimal(animal_t **database, unsigned *size, char *name){
     int index = findAnimal((*database), (*size), name);
 
@@ -288,6 +292,7 @@ int main(){
     printOptions();
 
     while ( option ){
+        //petAnimal();
         printf("\nOption: ");
         scanf("%u", &option);
 

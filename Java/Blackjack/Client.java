@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import javafx.application.Application;
 
 class T {
     public static String ab(int tabs){
@@ -41,7 +40,7 @@ class Game {
     public Dealer getDealer(){
         return this.dealer;
     }
-
+                                                                    
     public Player getPlayer(int index){
         return this.players.get(index);
     }
@@ -517,11 +516,11 @@ class Hand {
         }
         printString += "\n";
         printString += T.ab(t+1) + "outcome: ";
-        switch ( this.outcome ){
-            case NONE:      printString += "NONE";      break;
-            case BUST:      printString += "BUST";      break;
-            case STAND:     printString += "STAND";     break;
-            case BLACKJACK: printString += "BLACKJACK"; break;
+        switch (this.outcome) {
+            case NONE -> printString += "NONE";
+            case BUST -> printString += "BUST";
+            case STAND -> printString += "STAND";
+            case BLACKJACK -> printString += "BLACKJACK";
         }
         printString += "\n";
         printString += T.ab(t) + "}\n";
@@ -608,7 +607,7 @@ class Deck {
 
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class Card {
-    private static final String[] SUITS = {"♠️", "♥️", "♣", "♦️"};
+    private static final String[] SUITS = {"♠", "♥", "♣", "♦"};
     private static final String[] NUMBS = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
     private int suit;
     private int number;
@@ -681,8 +680,7 @@ class Client {
     public static void manualdeal(Game game, Player player, Scanner scan){
         for (int indexHand = 0; indexHand < player.getHands().size() ; indexHand++ ){
             int move = 1;
-            while ( player.getHand(indexHand).getOutcome() == Hand.NONE )
-            {
+            while ( player.getHand(indexHand).getOutcome() == Hand.NONE ){
                 System.out.print(player.getName() + ": ");
                 String option = scan.nextLine();
                 boolean flag = false;
@@ -724,8 +722,7 @@ class Client {
 
     public static void autodeal(Game game, int standPoints){
         Hand hand = game.getDealer().getHand();
-        while ( hand.getOutcome() == Hand.NONE )
-        {
+        while ( hand.getOutcome() == Hand.NONE ){
             System.out.print("Dealer: ");
 
             if ( hand.getPoints() < standPoints ){

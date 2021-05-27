@@ -20,10 +20,10 @@ function setup(){
         //Arr[i] = new SortNode( SIZE-i );
     }
 
-    bubble_sort1();
+    //bubble_sort1();
     //bubble_sort2();
     //bubble_sort3()
-    //cocktail_shaker_sort();
+    cocktail_shaker_sort();
     //insertion_sort();
     //quick_sort(0, Arr.length-1);
     //radix_sort1(2);
