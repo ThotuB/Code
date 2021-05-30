@@ -59,12 +59,6 @@ public:
             distances[u][v] = w;
         }
     }
-
-    void reset(){
-        for (Vertex* v : graph){
-            v->distance = INF;
-        }
-    }
     
     static void relax(Vertex* u, Vertex* v, int w){
         if ( v->distance > u->distance + w ){
