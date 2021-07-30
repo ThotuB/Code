@@ -1,3 +1,4 @@
-print(23/3)
+import torch
 
-name = "Gion"
+x = torch.empty(1)
+print(x)
