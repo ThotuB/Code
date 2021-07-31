@@ -1,0 +1,16 @@
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\TEST\bin\Debug\net5.0\TEST.exe
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\TEST\bin\Debug\net5.0\TEST.deps.json
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\TEST\bin\Debug\net5.0\TEST.runtimeconfig.json
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\TEST\bin\Debug\net5.0\TEST.runtimeconfig.dev.json
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\TEST\bin\Debug\net5.0\TEST.dll
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\TEST\bin\Debug\net5.0\ref\TEST.dll
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\TEST\bin\Debug\net5.0\TEST.pdb
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\TEST\obj\Debug\net5.0\TEST.csprojAssemblyReference.cache
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\TEST\obj\Debug\net5.0\TEST.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\TEST\obj\Debug\net5.0\TEST.AssemblyInfoInputs.cache
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\TEST\obj\Debug\net5.0\TEST.AssemblyInfo.cs
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\TEST\obj\Debug\net5.0\TEST.csproj.CoreCompileInputs.cache
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\TEST\obj\Debug\net5.0\TEST.dll
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\TEST\obj\Debug\net5.0\ref\TEST.dll
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\TEST\obj\Debug\net5.0\TEST.pdb
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\TEST\obj\Debug\net5.0\TEST.genruntimeconfig.cache
