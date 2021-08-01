@@ -23,49 +23,68 @@ public:
         }
     }
 
-    char operator [](char c){
+    char operator[](char c){
         return connect[c];
     }
 };
 
 class rotor{
 private:
-  string name;
-  vector <unsigned> connect;
-  unsigned turnover;
+    string name;
+    string alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    string connect;
+    string turnover;
+
+    // TODO: check if it works
+    void rotate(unsigned nr){
+        // rotate right
+        // connect = connect.substr(connect.size()-nr, nr) + connect.substr(0, connect.size()-nr);
+        // alpha = alpha.substr(alpha.size()-nr, nr) + alpha.substr(0, alpha.size()-nr);
+        // rotate left
+        connect = connect.substr(nr) + connect.substr(0, nr);
+        alpha = alpha.substr(nr) + alpha.substr(0, nr);
+    }
 
 public:
-    rotor(string _name = "", string _settings = "", char _turnover = 'Z'){
+    rotor(){}
+
+    rotor(rotor& copyRotor){
+        name = copyRotor.name;
+        connect = copyRotor.connect;
+        turnover = copyRotor.turnover;
+    }
+
+    rotor(string _name, string _connect, string _turnover){
         name = _name;
-        turnover = _turnover - 'A';
-        for (unsigned i = 0 ; i < 26 ; i++){
-            connect.push_back(_settings[i] - 'A');
-        }
+        connect = _connect;
+        turnover = _turnover;
     }
 
-    unsigned operator [](unsigned n){
-        return connect[n];
+    char operator[](char c){
+        return connect[c-'A'];
     }
 
-  void turn(int nr){
-      rotate(connect.begin(), connect.begin() + nr, connect.end());
-  }
+    bool turn(unsigned nr){
+        bool turnNext = ( turnover.find(alpha[0]) != string::npos );
+        rotate(nr);
+        return turnNext;
+    }
 
-  string get_name(){
-      return name;
-  }
-
-  unsigned get_turnover(){
-      return turnover;
-  }
+    friend ostream& operator <<(ostream& out, rotor& r){
+        out << r.name << " " << r.connect << " " << r.turnover;
+        return out;
+    }
 };
 
 class enigma{
 public:
+    rotor reflector;
     rotor rotors[3];
     plug plugs;
 
-    enigma(rotor _rot1, rotor _rot2, rotor _rot3, unsigned _pos1, unsigned _pos2, unsigned _pos3, plug _plug){
+    enigma(rotor _ref, rotor _rot1, rotor _rot2, rotor _rot3, unsigned _pos1, unsigned _pos2, unsigned _pos3, plug _plug){
+        reflector = _ref;
+
         rotors[0] = _rot1;
         rotors[0].turn(_pos1-1);
 
@@ -78,19 +97,75 @@ public:
         plugs = _plug;
     }
 
-    void turn_rotor(unsigned i){
-        rotors[i].turn(1);
+    void turn(){
+        if ( !rotors[2].turn(1) ){
+            return;
+        }
+        if ( !rotors[1].turn(1) ){
+            return;
+        }
+        rotors[0].turn(1);
+    }
+
+    string encode(string text){
+        string result = "";
+        char resultChar;
+        for (unsigned i = 0 ; i < text.size() ; i++){
+            if ( text[i] == ' ' ){
+                continue;
+            }
+            if ( i%5 == 0 && i != 0 ){
+                result += ' ';
+            }
+            resultChar = plugs[text[i]];
+            cout << "Plug: " << resultChar << endl;
+            resultChar = rotors[2][resultChar];
+            cout << "Rotor 3: " << resultChar << endl;
+            resultChar = rotors[1][resultChar];
+            cout << "Rotor 2: " << resultChar << endl;
+            resultChar = rotors[0][resultChar];
+            cout << "Rotor 1: " << resultChar << endl;
+            resultChar = reflector[resultChar];
+            cout << "Reflector: " << resultChar << endl;
+            resultChar = rotors[0][resultChar];
+            cout << "Rotor 1: " << resultChar << endl;
+            resultChar = rotors[1][resultChar];
+            cout << "Rotor 2: " << resultChar << endl;
+            resultChar = rotors[2][resultChar];
+            cout << "Rotor 3: " << resultChar << endl;
+            resultChar = plugs[resultChar];
+            cout << "Plug: " << resultChar << endl << endl;
+
+            //result += plugs[rotors[2][rotors[1][rotors[0][reflector[rotors[0][rotors[1][rotors[2][plugs[text[i]]]]]]]]]];
+
+            result += resultChar;
+            turn();
+        }
+        return result;
     }
 };
 
 int main(){
-    plug p1("PO ML IU KJ NH YT GB VF RE DC");
-    rotor rotors[5] = { {"I"  , "EKMFLGDQVZNTOWYHXUSPAIBRCJ", 'R'},
-                        {"II" , "AJDKSIRUXBLHWTMCQGZNPYFVOE", 'F'},
-                        {"III", "BDFHJLCPRTXVZNYEIWGAKMUSQO", 'W'},
-                        {"IV" , "ESOVPZJAYQUIRHXLNFTGKDCMWB", 'K'},
-                        {"V"  , "VZBRGITYUPSDNHLXAWMJQOFECK", 'A'} };
-    rotor reflector = {""};
+    plug p1("");
 
-    enigma enigga = {rotors[0], rotors[1], rotors[2], 1, 1, 1, p1};
+    rotor rotors[] = {  {"I"   , "EKMFLGDQVZNTOWYHXUSPAIBRCJ", "Q" },
+                        {"II"  , "AJDKSIRUXBLHWTMCQGZNPYFVOE", "E" },
+                        {"III" , "BDFHJLCPRTXVZNYEIWGAKMUSQO", "V" },
+                        {"IV"  , "ESOVPZJAYQUIRHXLNFTGKDCMWB", "J" },
+                        {"V"   , "VZBRGITYUPSDNHLXAWMJQOFECK", "Z" },
+                        {"VI"  , "JPGVOUMFYQBENHZRDKASXLICTW", "ZM"},
+                        {"VII" , "NZJHGRCXMYSWBOUFAIVLPEKQDT", "ZM"},
+                        {"VIII", "FKQHTLXOCBJSPDZRAMEWNIUYGV", "ZM"} };
+
+    rotor reflectors[] = {  {"ETW"  , "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "-"},
+                            {"Beta" , "LEYJVCNIXWPBQMDRTAKZGFUHOS", "-"},
+                            {"Gamma", "FSOKANUERHMBTIYCWLQPZXVGJD", "-"},
+                            {"M4-B" , "ENKQAUYWJICOPBLMDXZVFTHRGS", "-"},
+                            {"M4-C" , "RDOBJNTKVEHMLFCWZAXGYIPSUQ", "-"},
+                            {"M3-B" , "YRUHQSLDPXNGOKMIEBFZCWVJAT", "-"},
+                            {"M3-C" , "FVPJIAOYEDRZXWGCTKUQSBNMHL", "-"} };
+
+    enigma enigga = {reflectors[5], rotors[0], rotors[1], rotors[2], 1, 1, 1, p1};
+
+    cout << enigga.encode("AAAAAAAAAAAAAAAAAAAAAA") << "\n";
 }

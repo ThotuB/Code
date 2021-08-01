@@ -1,0 +1,16 @@
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\CONTESTS\Catalyst Cat Coder\Bowling\Level 5\bin\Debug\net5.0\Level 5.exe
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\CONTESTS\Catalyst Cat Coder\Bowling\Level 5\bin\Debug\net5.0\Level 5.deps.json
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\CONTESTS\Catalyst Cat Coder\Bowling\Level 5\bin\Debug\net5.0\Level 5.runtimeconfig.json
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\CONTESTS\Catalyst Cat Coder\Bowling\Level 5\bin\Debug\net5.0\Level 5.runtimeconfig.dev.json
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\CONTESTS\Catalyst Cat Coder\Bowling\Level 5\bin\Debug\net5.0\Level 5.dll
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\CONTESTS\Catalyst Cat Coder\Bowling\Level 5\bin\Debug\net5.0\ref\Level 5.dll
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\CONTESTS\Catalyst Cat Coder\Bowling\Level 5\bin\Debug\net5.0\Level 5.pdb
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\CONTESTS\Catalyst Cat Coder\Bowling\Level 5\obj\Debug\net5.0\Level 5.csprojAssemblyReference.cache
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\CONTESTS\Catalyst Cat Coder\Bowling\Level 5\obj\Debug\net5.0\Level 5.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\CONTESTS\Catalyst Cat Coder\Bowling\Level 5\obj\Debug\net5.0\Level 5.AssemblyInfoInputs.cache
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\CONTESTS\Catalyst Cat Coder\Bowling\Level 5\obj\Debug\net5.0\Level 5.AssemblyInfo.cs
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\CONTESTS\Catalyst Cat Coder\Bowling\Level 5\obj\Debug\net5.0\Level 5.csproj.CoreCompileInputs.cache
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\CONTESTS\Catalyst Cat Coder\Bowling\Level 5\obj\Debug\net5.0\Level 5.dll
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\CONTESTS\Catalyst Cat Coder\Bowling\Level 5\obj\Debug\net5.0\ref\Level 5.dll
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\CONTESTS\Catalyst Cat Coder\Bowling\Level 5\obj\Debug\net5.0\Level 5.pdb
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\CONTESTS\Catalyst Cat Coder\Bowling\Level 5\obj\Debug\net5.0\Level 5.genruntimeconfig.cache
