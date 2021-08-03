@@ -1,75 +1,83 @@
 let rule = [];
+rule["F"] = "FFF";
 let sentance = "F";
 
-let len = 340;
-let angle = PI/6
+let iter = 0;
+let len = 400;
+let angle = Math.PI/12
+
+let DrawLines = [];
+let style = 0;
+
+let systemSentances = [];
 
 function setup(){
     createCanvas(2000, 2000);
-
-    rule["F"] = "FF+[+F-F-F]-[-F+F-[+F++F]-F]";
-
-    var button = createButton("*");
-    createP(sentance);
-    button.mousePressed( function() {
-        len /= 2;
-        sentance = L_System(sentance, 1);
-    } );
-}
-
-function L_System(text, iter){
-    if ( iter == 0){
-        //sentance = text;
-        return text;
-    }
-    else {
-        let textNext = "";
-        let textLen = text.length;
-
-        for (let i = 0 ; i < textLen ; i++){
-            if ( rule[text[i]] != undefined ){
-                textNext += rule[text[i]];
-            }
-            else {
-                textNext += text[i];
-            }
-        }
-
-        //createP(textNext);
-
-        return L_System(textNext, iter - 1);
-    }
-}
-
-function textToLines(text){
-    stroke(255);
-    for (let i = 0 ; i < text.length ; i++){
-        let c = text[i];
-
-        switch (c){
-            case "F":
-                line(0, 0, 0, -len);
-                translate(0, -len);
-                break;
-            case "+":
-                rotate(angle);
-                break;
-            case "-":
-                rotate(-angle);
-                break;
-            case "[":
-                push();
-                break;
-            case "]":
-                pop();
-                break;
-        }
-    }
-}
-
-function draw(){
     background(0);
-    translate(1000, 1950);
+    translate(width / 2, height - 50);
 
-    textToLines(sentance);
+    SetupStyles();
+    DrawLines = [Style1, Style2];
+    
+    Reset();
+}
+
+function Reset(){
+    sentance="F";
+    iter = 0;
+    len = 400;
+
+    systemSentances = ["F"];
+    PrintSentances();
+    DrawLines[style](sentance);
+}
+
+function SetRule(){
+    Reset();
+
+    let ruleInput = select("#rule");
+    let ruleText = select("#ruleText");
+
+    rule["F"] = ruleInput.value();
+    SetupStyles();
+    ruleText.html(ruleInput.value());
+}
+
+function ChoseStyle(s){
+    style = s;
+    DrawLines[style](sentance);
+}
+
+function PrintSentances() {
+    for (let i = 0 ; i <= iter ; i++){
+        print(systemSentances[i]);
+    }
+}
+
+function Iterate() {
+    sentance = L_System(sentance);
+    iter++;
+
+    systemSentances[iter] = sentance;
+    PrintSentances();
+
+    DrawLines[style](sentance);
+}
+
+function L_System(text){
+    let textNext = "";
+    let textLen = text.length;
+
+    for (let i = 0 ; i < textLen ; i++){
+        if ( rule[text[i]] != undefined ){
+            textNext += rule[text[i]];
+        }
+        else {
+            textNext += text[i];
+        }
+    }
+
+    len /= 2;
+
+    return textNext;
 }

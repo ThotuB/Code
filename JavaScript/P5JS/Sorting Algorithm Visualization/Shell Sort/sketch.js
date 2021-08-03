@@ -19,4 +19,5 @@ async function shell_sort(Steps){
             }
         }
     }
+    await order(Arr, 0, Arr.length);
 }

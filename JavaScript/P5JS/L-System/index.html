@@ -7,7 +7,21 @@
     <title>L-System</title>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.min.js"></script>
     
+    <link rel="stylesheet" href="style.css">
+
     <script src="sketch.js"></script>
+    <script src="drawstyle.js"></script>
   </head>
-  <body></body>
+  <body>
+    <label for="rule">Rule:</label>
+    <input id="rule" onClick="this.select();" type="text" value="FF+[+F+++F-F]-[-F-[+F+++[FF]-[-F]]-[-F]-F]">
+    <button onclick="SetRule()">SET RULE</button>
+    <label for="ruleCurrent">Current Rule:</label>
+    <span id="ruleText" role="textbox">FFF</span>
+    <br>
+    <button onclick="ChoseStyle(0)">STYLE I</button>
+    <button onclick="ChoseStyle(1)">STYLE II</button>
+    <br>
+    <button onclick="Iterate()">GO</button>
+  </body>
 </html>

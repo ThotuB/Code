@@ -18,7 +18,7 @@ async function cocktail_shaker_sort(){
         for (let i = right ; i > left ; i--){
             Arr[i].active();
             Arr[i-1].active();
-            if ( await compare(Arr[i-1].key, Arr[i].key) ){
+            if ( await compare(Arr[i-1].key, Arr[i].key) > 0 ){
                 await swap(Arr, i-1, i);
             }
             Arr[i].reset();

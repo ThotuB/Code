@@ -146,7 +146,7 @@ public:
 };
 
 int main(){
-    plug p1("");
+    plug p1("AV PM LS RG CO SE QW XU TB IN");
 
     rotor rotors[] = {  {"I"   , "EKMFLGDQVZNTOWYHXUSPAIBRCJ", "Q" },
                         {"II"  , "AJDKSIRUXBLHWTMCQGZNPYFVOE", "E" },

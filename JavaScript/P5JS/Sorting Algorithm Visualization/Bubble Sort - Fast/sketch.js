@@ -18,7 +18,5 @@ async function bubble_sort1(){
         right--;
     }while(flag);
 
-    for (let i = 0 ; i <= right ; i++){
-        Arr[i].order();
-    }
+    await order(Arr, 0, Arr.length);
 }

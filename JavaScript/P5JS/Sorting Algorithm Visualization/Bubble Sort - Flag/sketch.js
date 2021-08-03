@@ -14,4 +14,6 @@ async function bubble_sort2(){
             Arr[i+1].reset();
         }
     }while(flag);
+
+    await order(Arr, 0, Arr.length);
 }

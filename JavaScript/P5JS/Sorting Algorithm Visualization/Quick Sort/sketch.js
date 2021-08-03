@@ -25,4 +25,6 @@ async function quick_sort(left, right){
             quick_sort(index + 1, right)
         ]);
     }
+    Arr[left].order();
+    Arr[left-1].order();
 }

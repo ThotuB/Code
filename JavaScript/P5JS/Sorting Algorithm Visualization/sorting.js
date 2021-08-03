@@ -18,3 +18,10 @@ async function swap(Arr, i, j){
 function sleep(ms){
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+async function order(Arr, start, end){
+    for (let i = start; i < end; i++){
+        Arr[i].order();
+        await sleep(DELAY);
+    }
+}

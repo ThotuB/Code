@@ -15,4 +15,6 @@ async function insertion_sort(){
             Arr[i+1].reset();
         }
     }
+
+    await order(Arr, 0, Arr.length);
 }

@@ -6,7 +6,7 @@ async function selection_sort(){
         Arr[index].pivot();
 
         for (let i = index + 1 ; i < Arr.length ; i++){
-            Arr[i].active();
+            await Arr[i].active();
             if (await compare(min, Arr[i].key) > 0 ){
                 min = Arr[i].key;
                 if ( mindex != index ){
@@ -21,7 +21,8 @@ async function selection_sort(){
         }
 
         await swap(Arr, index, mindex);
-        Arr[index].reset();
         Arr[mindex].reset();
+        Arr[index].order();
     }
+    Arr[Arr.length - 1].order();
 }

@@ -7,9 +7,10 @@ async function radix_sort1(mask){
     }
 
     const passMax = Math.ceil(bits/mask);
+    print(passMax);
     for (let pass = 0 ; pass < passMax ; pass++){
         for (let i = 0 ; i < Arr.length ; i++){
-            let index = get_bits(Arr[i], pass*mask, mask);
+            let index = get_bits(Arr[i].key, pass*mask, mask);
             Buckets[index].push(Arr[i]);
         }
         print(Buckets);
@@ -23,6 +24,7 @@ async function radix_sort1(mask){
             Buckets[index] = [];
         }
     }
+    print(Arr);
 }
 
 function get_bits(nr, bit, nrOfBits){

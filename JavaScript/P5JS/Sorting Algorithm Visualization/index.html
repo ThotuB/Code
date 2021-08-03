@@ -22,5 +22,22 @@
     <script src="sorting.js"></script>
     <script src="sketch.js"></script>
   </head>
-  <body></body>
+  <body>
+    <button onclick="sort_start('Bubble Sort 1')">Bubble Sort</button>
+    <button onclick="sort_start('Bubble Sort 2')">Bubble Sort (Flag)</button>
+    <button onclick="sort_start('Bubble Sort 3')">Bubble Sort (Slow)</button>
+    <button onclick="sort_start('Cocktail Shaker Sort')">Cocktail Shaker Sort</button>
+    <button onclick="sort_start('Insertion Sort')">Insertion Sort</button>
+    <button onclick="sort_start('Quick Sort')">Quick Sort</button>
+    <button onclick="sort_start('Radix Sort 1')">Radix Sort (Direct)</button>
+    <button onclick="sort_start('Radix Sort 2')">Radix Sort (Exchange)</button>
+    <button onclick="sort_start('Selection Sort')">Selection Sort</button>
+    <button onclick="sort_start('Shell Sort')">Shell Sort</button>
+    <br>
+    <button onclick="reset()">Reset</button>
+    <input type="radio" id="reset1" name="reset" onclick="resetSet('Random')" checked>
+    <label for="reset1">Random</label>
+    <input type="radio" id="reset2" name="reset" onclick="resetSet('Sorted')">
+    <label for="reset2">Sorted</label>
+  </body>
 </html>
