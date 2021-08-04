@@ -1,6 +1,6 @@
 let rule = [];
-rule["F"] = "FFF";
-let sentance = "F";
+rule["A"] = "AAA";
+let sentance = "A";
 
 let iter = 0;
 let len = 400;
@@ -17,30 +17,41 @@ function setup(){
     translate(width / 2, height - 50);
 
     SetupStyles();
-    DrawLines = [Style1, Style2];
+    DrawLines = [Style1, Style2, Style3];
     
     Reset();
 }
 
 function Reset(){
-    sentance="F";
+    sentance="A";
     iter = 0;
     len = 400;
 
-    systemSentances = ["F"];
-    PrintSentances();
     DrawLines[style](sentance);
+    print(sentance);
 }
 
-function SetRule(){
+function SetRule(char){
     Reset();
 
-    let ruleInput = select("#rule");
-    let ruleText = select("#ruleText");
+    let ruleInputA = select("#ruleA");
+    let ruleTextA = select("#ruleTextA");
 
-    rule["F"] = ruleInput.value();
+    let ruleInputB = select("#ruleB");
+    let ruleTextB = select("#ruleTextB");
+
+    switch (char){
+        case "A":
+            rule["A"] = ruleInputA.value();
+            ruleTextA.html(ruleInputA.value());
+            break;
+        case "B":
+            rule["B"] = ruleInputB.value();
+            ruleTextB.html(ruleInputB.value());
+            break;
+    }
+            
     SetupStyles();
-    ruleText.html(ruleInput.value());
 }
 
 function ChoseStyle(s){
@@ -48,18 +59,11 @@ function ChoseStyle(s){
     DrawLines[style](sentance);
 }
 
-function PrintSentances() {
-    for (let i = 0 ; i <= iter ; i++){
-        print(systemSentances[i]);
-    }
-}
-
 function Iterate() {
     sentance = L_System(sentance);
     iter++;
 
-    systemSentances[iter] = sentance;
-    PrintSentances();
+    print(sentance);
 
     DrawLines[style](sentance);
 }

@@ -1,10 +1,10 @@
 // Style 1 Vars
-let countF;
+let countA;
 let colorJmp = 1;
 
 function SetupStyles() {
-    countF = rule["F"].split('').reduce( (acc, char) => {
-        return acc + (char === 'F'); 
+    countA = rule["A"].split('').reduce( (acc, char) => {
+        return acc + (char === 'A'); 
     }, 0);
 }
 
@@ -13,13 +13,14 @@ function Style1(text){
     background(0);
     push();
 
-    colorJmp = 240 / Math.pow(countF, iter);
+    colorJmp = 240 / Math.pow(countA, iter);
     let color = 255;
     for (let i = 0 ; i < text.length ; i++){
         stroke(color, color, color);
 
         switch (text[i]){
-            case "F":
+            case "B":
+            case "A":
                 line(0, 0, 0, -len);
                 translate(0, -len);
                 color -= colorJmp;
@@ -54,7 +55,8 @@ function Style2(text) {
         stroke(color, color, color);
 
         switch (text[i]){
-            case "F":
+            case "B":
+            case "A":
                 line(0, 0, 0, -len);
                 translate(0, -len);
                 break;
@@ -74,6 +76,40 @@ function Style2(text) {
             case "]":
                 colors.pop();
                 cnt--;
+                pop();
+                break;
+        }
+    }
+    pop();
+}
+
+function Style3(text) {
+    strokeWeight(5);
+    background(0);
+    push();
+
+    for (let i = 0 ; i < text.length ; i++){
+        switch (text[i]){
+            case "A":
+                stroke(255, 0, 255);
+                line(0, 0, 0, -len);
+                translate(0, -len);
+                break;
+            case "B":
+                stroke(0, 255, 255);
+                line(0, 0, 0, -len);
+                translate(0, -len);
+                break;
+            case "+":
+                rotate(angle);
+                break;
+            case "-":
+                rotate(-angle);
+                break;
+            case "[":
+                push();
+                break;
+            case "]":
                 pop();
                 break;
         }

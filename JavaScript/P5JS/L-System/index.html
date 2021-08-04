@@ -13,15 +13,54 @@
     <script src="drawstyle.js"></script>
   </head>
   <body>
-    <label for="rule">Rule:</label>
-    <input id="rule" onClick="this.select();" type="text" value="FF+[+F+++F-F]-[-F-[+F+++[FF]-[-F]]-[-F]-F]">
-    <button onclick="SetRule()">SET RULE</button>
-    <label for="ruleCurrent">Current Rule:</label>
-    <span id="ruleText" role="textbox">FFF</span>
-    <br>
-    <button onclick="ChoseStyle(0)">STYLE I</button>
-    <button onclick="ChoseStyle(1)">STYLE II</button>
-    <br>
-    <button onclick="Iterate()">GO</button>
+    <table>
+      <tr>
+        <td>
+          <label for="ruleA">A=</label>
+          <input id="ruleA" onClick="this.select();" type="text" value="AA+[+A++A-A]-[-A-[+A+A]-[-A]-A]">
+        </td> 
+        <td>
+          <button onclick="SetRule('A')">SET RULE</button>
+        </td>
+        <td>
+          <label for="ruleCurrentA">A=</label>
+          <span id="ruleTextA" role="textbox">AAA</span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="ruleB">B=</label>
+          <input id="ruleB" onClick="this.select();" type="text" value="">
+        </td>
+        <td>
+          <button onclick="SetRule('B')">SET RULE</button>
+        </td> 
+        <td>
+          <label for="ruleCurrentB">B=</label>
+          <span id="ruleTextB" role="textbox"></span>
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>
+          <button onclick="ChoseStyle(0)">STYLE I</button>
+        </td>
+        <td>
+          <button onclick="ChoseStyle(1)">STYLE II</button>
+        </td>
+        <td>
+          <button onclick="ChoseStyle(2)">STYLE III</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button onclick="Iterate()" >GO</button>
+        </td>
+        <td>
+          <button onclick="Reset()">RESET</button>
+        </td>
+      </tr>
+    </table>
   </body>
 </html>
