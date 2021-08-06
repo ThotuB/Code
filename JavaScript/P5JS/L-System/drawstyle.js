@@ -16,7 +16,7 @@ function Style1(text){
     colorJmp = 240 / Math.pow(countA, iter);
     let color = 255;
     for (let i = 0 ; i < text.length ; i++){
-        stroke(color, color, color);
+        stroke(color, 0, color);
 
         switch (text[i]){
             case "B":
