@@ -1,0 +1,21 @@
+{
+    "name": "Chrome Extension",
+    "description": "Youtube extension",
+    "version": "1.0",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "permissions": [
+        "https://www.youtube.com/",
+        "contextMenus",
+        "storage"
+    ],
+    "optional_permissions": [
+        "downloads",
+        "https://*.youtube.com/*"
+    ]
+}

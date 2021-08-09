@@ -1309,7 +1309,7 @@ splitStack = tempStack.split('\n').filter(function (ln) {
 return !ln.match(/(p5.|native code|globalInit)/g);
 });
 err.stack = splitStack.join('\n');
-return err; // TODO: is this really a constructor?
+return err;
 };
 
 /* harmony default export */ var errorHandler = (CustomError);

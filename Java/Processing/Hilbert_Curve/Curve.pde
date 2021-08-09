@@ -20,7 +20,7 @@ class Curve {
         }
     }
 
-    void rotate(int iOff, int jOff, int axis){
+    void flip(int iOff, int jOff, int axis){
         if ( axis == 0 ){
             for (int i = 0 ; i < size - 1 ; i++){
                 for (int j = i + 1 ; j < size ; j++){
@@ -48,8 +48,8 @@ class Curve {
         copy(size, 0   , 1);
         copy(size, size, 4);
 
-        rotate(size, 0, 1);
-        rotate(size, size, 0);
+        flip(size, 0   , 1);
+        flip(size, size, 0);
 
         grid = gridNext;
         size *= 2;

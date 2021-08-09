@@ -16,7 +16,7 @@ public class FlowField {
     void update(float time) {
         for (int y = 0; y < rows; y++) {
             for (int x = 0; x < cols; x++) {
-                float angle = (float) noise.eval(x * Settings.deltaOff, y * Settings.deltaOff, time) * TWO_PI * 4;
+                float angle = (float) noise.eval(x * DELTA_OFF, y * DELTA_OFF, time) * TWO_PI * 4;
                 
                 PVector vec = PVector.fromAngle(angle).setMag(1);
 

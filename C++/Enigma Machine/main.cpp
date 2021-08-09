@@ -35,7 +35,6 @@ private:
     string connect;
     string turnover;
 
-    // TODO: check if it works
     void rotate(unsigned nr){
         // rotate right
         // connect = connect.substr(connect.size()-nr, nr) + connect.substr(0, connect.size()-nr);

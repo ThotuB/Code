@@ -36,7 +36,7 @@ public class Particle {
         float g = pos.y / height * 255;
         float b = 255;
 
-        stroke(r, g, b, Settings.alpha);
+        stroke(r, g, b, ALPHA);
         strokeWeight(1);
         line(pos.x, pos.y, posPrev.x, posPrev.y);
 

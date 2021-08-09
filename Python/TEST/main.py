@@ -1,4 +1,3 @@
-import torch
+lsit = [x for x in range(100) if x % 2 == 0]
 
-x = torch.empty(1)
-print(x)
+print(lsit)

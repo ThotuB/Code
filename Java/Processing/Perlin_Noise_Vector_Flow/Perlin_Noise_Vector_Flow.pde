@@ -8,12 +8,12 @@ boolean debug = false;
 void setup() {
     size(1200, 1200, P3D);
     
-    flowfield = new FlowField(Settings.scale);
+    flowfield = new FlowField(SCALE);
     flowfield.update(0);
 
     particles = new ArrayList<Particle>();
-    for (int i = 0 ; i < Settings.particleCount ; i++) {
-        particles.add(new Particle(random(width), random(height), random(Settings.particleSpeedMin, Settings.particleSpeedMax)));
+    for (int i = 0 ; i < PARTICLE_COUNT ; i++) {
+        particles.add(new Particle(random(width), random(height), random(PARTICLE_SPEED_MIN, PARTICLE_SPEED_MAX)));
     }
 
     background(0);
@@ -32,5 +32,5 @@ void draw() {
         particle.display(time);
         particle.follow(flowfield);
     }
-    time += Settings.deltaTime;
+    time += DELTA_TIME;
 }
