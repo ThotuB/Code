@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0fabfdb1-64aa-45f3-b943-748487f470ed" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Java/TEST/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Java/TEST/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Java/TEST/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Java/TEST/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Java/TEST/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/.idea/libraries/lib.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/Code.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Java/TEST/TEST.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/Processing/Cardioid/Callable.pde" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/Processing/Cardioid/Cardioid.pde" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/Processing/Cardioid/Settings.pde" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/Processing/Cardioid/Shapes.pde" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/Processing/Hilbert_Curve/Curve.pde" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/Processing/Hilbert_Curve/Hilbert_Curve.pde" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/Processing/Mandelbrot_Set/Color.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/Processing/Mandelbrot_Set/Complex.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/Processing/Mandelbrot_Set/Mandelbrot.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/Processing/Mandelbrot_Set/Mandelbrot_Set.pde" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/Processing/Perlin_Noise_Vector_Flow/FlowField.pde" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/Processing/Perlin_Noise_Vector_Flow/OpenSimplexNoise.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/Processing/Perlin_Noise_Vector_Flow/Particle.pde" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/Processing/Perlin_Noise_Vector_Flow/Perlin_Noise_Vector_Flow.pde" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/Processing/Perlin_Noise_Vector_Flow/Settings.pde" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/Processing/Simplex_Noise/OpenSimplexNoise.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/Processing/Simplex_Noise/Simplex_Noise.pde" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/TEST/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Card.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Client.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Dealer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Deck.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Game.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Hand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Matrix.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/10C.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/10D.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/10H.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/10S.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/2C.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/2D.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/2H.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/2S.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/3C.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/3D.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/3H.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/3S.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/4C.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/4D.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/4H.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/4S.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/5C.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/5D.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/5H.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/5S.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/6C.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/6D.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/6H.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/6S.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/7C.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/7D.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/7H.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/7S.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/8C.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/8D.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/8H.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/8S.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/9C.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/9D.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/9H.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/9S.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/AC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/AD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/AH.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/AS.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/JC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/JD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/JH.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/JS.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/KC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/KD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/KH.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/KS.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/QC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/QD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/QH.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/Resources/QS.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/T.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Code/layout.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Lab 2/Complex.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Lab 2/Engine.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Lab 2/Prob2_2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/production/Lab 2/Prob2_3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/test/Code/SpigotAlgorithm.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/out/test/Code/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/.idea/JavaScript.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Cache Memory/address.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Cache Memory/filter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Cache Memory/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Cache Memory/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Cache Memory/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Crazy Shell Sort/Algorithm/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Crazy Shell Sort/Algorithm/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Crazy Shell Sort/Step-by-Step/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Crazy Shell Sort/Step-by-Step/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Diffusion Limited Aggregation/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Diffusion Limited Aggregation/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Diffusion Limited Aggregation/walker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Fourier Series/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Fourier Series/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Fourier Transform/fourier.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Fourier Transform/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Fourier Transform/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Fractal Shapes Fancy/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Fractal Shapes Fancy/shape.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Fractal Shapes Fancy/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Fractal Shapes Fancy/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Fractal Shapes/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Fractal Shapes/shape.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Fractal Shapes/shape_math.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Fractal Shapes/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Fractal Trees/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Fractal Trees/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Game of Life/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Game of Life/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/L-System/drawstyle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/L-System/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/L-System/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/L-System/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/PI Collisions/clack.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/PI Collisions/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/PI Collisions/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/PI Collisions/square.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Perlin Noise Vector Fields/flowfield.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Perlin Noise Vector Fields/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Perlin Noise Vector Fields/particle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Perlin Noise Vector Fields/settings.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Perlin Noise Vector Fields/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Perlin Noise/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Perlin Noise/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Slimes/ant.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Slimes/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Slimes/settings.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Slimes/simulation.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Slimes/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Slimes/spawnmode.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Sorting Algorithm Visualization/Bubble Sort - Fast/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Sorting Algorithm Visualization/Bubble Sort - Flag/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Sorting Algorithm Visualization/Bubble Sort - Slow/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Sorting Algorithm Visualization/Cocktail Shaker Sort/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Sorting Algorithm Visualization/Insertion Sort/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Sorting Algorithm Visualization/Quick Sort/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Sorting Algorithm Visualization/Radix Sort - Direct/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Sorting Algorithm Visualization/Radix Sort - Exchange/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Sorting Algorithm Visualization/Selection Sort/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Sorting Algorithm Visualization/Shell Sort/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Sorting Algorithm Visualization/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Sorting Algorithm Visualization/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Sorting Algorithm Visualization/sorting.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Sorting Algorithm Visualization/sortnode.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/TEST/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/TEST/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/TEST/sound.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Virtual Memory/address.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Virtual Memory/filter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Virtual Memory/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Virtual Memory/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/P5JS/Virtual Memory/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Python.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1wc1HfTUSX64RQZcc3PLJ9Qr3q6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Creative Coding/Python/Ray_Casting" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0fabfdb1-64aa-45f3-b943-748487f470ed" name="Default Changelist" comment="" />
+      <created>1628742978438</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1628742978438</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="427" y="454" key="FileChooserDialogImpl" timestamp="1628743163248">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="427" y="454" key="FileChooserDialogImpl/0.0.2560.1400/2560.0.2560.1400@0.0.2560.1400" timestamp="1628743163248" />
+  </component>
+</project>
