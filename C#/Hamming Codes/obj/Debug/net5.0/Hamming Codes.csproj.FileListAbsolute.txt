@@ -1,0 +1,16 @@
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Hamming Codes\bin\Debug\net5.0\Hamming Codes.exe
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Hamming Codes\bin\Debug\net5.0\Hamming Codes.deps.json
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Hamming Codes\bin\Debug\net5.0\Hamming Codes.runtimeconfig.json
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Hamming Codes\bin\Debug\net5.0\Hamming Codes.runtimeconfig.dev.json
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Hamming Codes\bin\Debug\net5.0\Hamming Codes.dll
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Hamming Codes\bin\Debug\net5.0\ref\Hamming Codes.dll
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Hamming Codes\bin\Debug\net5.0\Hamming Codes.pdb
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Hamming Codes\obj\Debug\net5.0\Hamming Codes.csproj.AssemblyReference.cache
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Hamming Codes\obj\Debug\net5.0\Hamming Codes.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Hamming Codes\obj\Debug\net5.0\Hamming Codes.AssemblyInfoInputs.cache
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Hamming Codes\obj\Debug\net5.0\Hamming Codes.AssemblyInfo.cs
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Hamming Codes\obj\Debug\net5.0\Hamming Codes.csproj.CoreCompileInputs.cache
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Hamming Codes\obj\Debug\net5.0\Hamming Codes.dll
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Hamming Codes\obj\Debug\net5.0\ref\Hamming Codes.dll
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Hamming Codes\obj\Debug\net5.0\Hamming Codes.pdb
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Hamming Codes\obj\Debug\net5.0\Hamming Codes.genruntimeconfig.cache

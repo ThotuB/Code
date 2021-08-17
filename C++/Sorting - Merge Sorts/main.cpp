@@ -1,26 +1,26 @@
-#include <iostream>
 #include <fstream>
+#include <iostream>
 
 using namespace std;
 
 ifstream fin("arr.txt");
 
-void read(unsigned Arr[], unsigned size){
-    for (unsigned i = 0 ; i < size ; i++){
+void read(unsigned Arr[], unsigned size) {
+    for (unsigned i = 0; i < size; i++) {
         fin >> Arr[i];
     }
 }
 
-void write(unsigned Arr[], unsigned size){
-    for (unsigned i = 0 ; i < size ; i++){
+void write(unsigned Arr[], unsigned size) {
+    for (unsigned i = 0; i < size; i++) {
         cout << Arr[i] << " ";
     }
     cout << "\n";
 }
 
-void merge(unsigned Arr[], unsigned left, unsigned mid, unsigned right){
-    unsigned LSize = mid-left+1;
-    unsigned RSize = right-mid;
+void merge(unsigned Arr[], unsigned left, unsigned mid, unsigned right) {
+    const unsigned LSize = mid - left + 1;
+    const unsigned RSize = right - mid;
     unsigned LArr[LSize];
     unsigned RArr[RSize];
 
@@ -35,8 +35,7 @@ void merge(unsigned Arr[], unsigned left, unsigned mid, unsigned right){
         if (LArr[i] <= RArr[j]) {
             Arr[k] = LArr[i];
             i++;
-        }
-        else {
+        } else {
             Arr[k] = RArr[j];
             j++;
         }
@@ -54,18 +53,18 @@ void merge(unsigned Arr[], unsigned left, unsigned mid, unsigned right){
     }
 }
 
-void merge_sort(unsigned Arr[], unsigned left, unsigned right){
-    if ( left >= right ){
+void merge_sort(unsigned Arr[], unsigned left, unsigned right) {
+    if (left >= right) {
         return;
     }
 
-    unsigned mid = (left+right)/2;
+    unsigned mid = (left + right) / 2;
     merge_sort(Arr, left, mid);
-    merge_sort(Arr, mid+1, right);
+    merge_sort(Arr, mid + 1, right);
     merge(Arr, left, mid, right);
 }
 
-int main(){
+int main() {
     unsigned Arr[15];
     read(Arr, 15);
     write(Arr, 15);

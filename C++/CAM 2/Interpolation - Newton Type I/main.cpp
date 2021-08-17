@@ -19,101 +19,99 @@ float q[SIZE_V][SIZE];
 
 /// ------------------ PRINTING ------------------
 
-void print_delta_y(){
-  cout<<"Delta Y:\n";
-  for (unsigned i = 0 ; i < SIZE ; i++){
-    for (unsigned j = 0 ; j < SIZE - i ; j++){
-      printf("%.3f\t", delta_y[i][j]);
+void print_delta_y() {
+    cout << "Delta Y:\n";
+    for (unsigned i = 0; i < SIZE; i++) {
+        for (unsigned j = 0; j < SIZE - i; j++) {
+            printf("%.3f\t", delta_y[i][j]);
+        }
+        cout << "\n";
     }
-    cout<<"\n";
-  }
-  cout<<"\n";
+    cout << "\n";
 }
 
-void print_poly_coefs(){
-  cout<<"P"<<ORDER<<"(q):\n";
-  for (unsigned j = 0 ; j < SIZE ; j++){
-    printf("%.3f\t", poly_coefs[j]);
-  }
-  cout<<"\n\n";
-}
-
-void print_yv(){
-  cout<<"yv:\n";
-  for (unsigned i = 0 ; i < SIZE_V ; i++){
-    printf("%.3f\t", yv[i]);
-  }
-  cout<<"\n\n";
-}
-
-void print_q(){
-  cout<<"q:\n";
-  for (unsigned i = 0 ; i < SIZE_V ; i++){
-    for (unsigned j = 0 ; j < SIZE ; j++){
-      printf("%.3f\t", q[i][j]);
+void print_poly_coefs() {
+    cout << "P" << ORDER << "(q):\n";
+    for (unsigned j = 0; j < SIZE; j++) {
+        printf("%.3f\t", poly_coefs[j]);
     }
-    cout<<"\n";
-  }
-  cout<<"\n";
+    cout << "\n\n";
+}
+
+void print_yv() {
+    cout << "yv:\n";
+    for (unsigned i = 0; i < SIZE_V; i++) {
+        printf("%.3f\t", yv[i]);
+    }
+    cout << "\n\n";
+}
+
+void print_q() {
+    cout << "q:\n";
+    for (unsigned i = 0; i < SIZE_V; i++) {
+        for (unsigned j = 0; j < SIZE; j++) {
+            printf("%.3f\t", q[i][j]);
+        }
+        cout << "\n";
+    }
+    cout << "\n";
 }
 
 /// ------------------------------------------
 
-void get_delta_y(){
-  for (unsigned j = 0 ; j < SIZE ; j++){
-    for (unsigned i = 0 ; i < SIZE - j ; i++){
-      if ( j == 0 ){
-        delta_y[i][j] = y[i];
-      }
-      else {
-        delta_y[i][j] = delta_y[i+1][j-1] - delta_y[i][j-1];
-      }
+void get_delta_y() {
+    for (unsigned j = 0; j < SIZE; j++) {
+        for (unsigned i = 0; i < SIZE - j; i++) {
+            if (j == 0) {
+                delta_y[i][j] = y[i];
+            } else {
+                delta_y[i][j] = delta_y[i + 1][j - 1] - delta_y[i][j - 1];
+            }
+        }
     }
-  }
 }
 
-unsigned factorial(unsigned f){
-  if ( f == 0 ){
-    return 1;
-  }
-  return f * factorial(f-1);
-}
-
-void get_poly_coefs(){
-  for (unsigned i = 0 ; i <= ORDER ; i++){
-    poly_coefs[i] = delta_y[0][i] / factorial(i);
-  }
-}
-
-void get_q(){
-  for (unsigned i = 0 ; i < SIZE_V ; i++){
-    q[i][0] = 1;
-    for (unsigned j = 1 ; j < SIZE ; j++){
-      q[i][j] = q[i][j-1] * (xv[i] - x[j-1]);
+unsigned factorial(unsigned f) {
+    if (f == 0) {
+        return 1;
     }
-  }
+    return f * factorial(f - 1);
 }
 
-void get_yv(){
-  for (unsigned i = 0 ; i < SIZE_V ; i++){
-    for (unsigned j = 0 ; j <= ORDER ; j++){
-      yv[i] += poly_coefs[j] * q[i][j];
+void get_poly_coefs() {
+    for (unsigned i = 0; i <= ORDER; i++) {
+        poly_coefs[i] = delta_y[0][i] / factorial(i);
     }
-  }
 }
 
+void get_q() {
+    for (unsigned i = 0; i < SIZE_V; i++) {
+        q[i][0] = 1;
+        for (unsigned j = 1; j < SIZE; j++) {
+            q[i][j] = q[i][j - 1] * (xv[i] - x[j - 1]);
+        }
+    }
+}
 
-int main(){
-  get_delta_y();
-  print_delta_y();
+void get_yv() {
+    for (unsigned i = 0; i < SIZE_V; i++) {
+        for (unsigned j = 0; j <= ORDER; j++) {
+            yv[i] += poly_coefs[j] * q[i][j];
+        }
+    }
+}
 
-  get_poly_coefs();
-  get_q();
-  get_yv();
+int main() {
+    get_delta_y();
+    print_delta_y();
 
-  print_poly_coefs();
-  print_q();
-  print_yv();
+    get_poly_coefs();
+    get_q();
+    get_yv();
 
-  return 0;
+    print_poly_coefs();
+    print_q();
+    print_yv();
+
+    return 0;
 }

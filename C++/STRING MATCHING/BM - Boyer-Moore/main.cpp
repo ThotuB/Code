@@ -1,67 +1,68 @@
-#include <iostream>
 #include <stdlib.h>
+
+#include <iostream>
 #include <map>
 #include <string>
 #include <vector>
 
 using namespace std;
 
-string read(FILE* stream){
+string read(FILE* stream) {
     string text;
 
-    for (char c = fgetc(stream) ; c != EOF ; c = fgetc(stream)){
+    for (char c = fgetc(stream); c != EOF; c = fgetc(stream)) {
         text.push_back(c);
     }
 
     return text;
 }
 
-void write(string source, vector<unsigned> found, unsigned modelLen){
+void write(string source, vector<unsigned> found, unsigned modelLen) {
     unsigned len = source.length();
     unsigned index = 0;
 
-    for (unsigned i = 0 ; i < len ; i++){
-        if ( i == found[index] ){
+    for (unsigned i = 0; i < len; i++) {
+        if (i == found[index]) {
             cout << "\033[0;31m";
-            for (unsigned j = 0 ; j < modelLen ; j++){
+            for (unsigned j = 0; j < modelLen; j++) {
                 cout << source[i];
                 i++;
             }
             cout << "\033[0m";
             index++;
-        }
-        else {
+        } else {
             cout << source[i];
         }
     }
 }
 
-void print_map(map <char, int> Map, unsigned len){
-    for (auto it = Map.cbegin() ; it != Map.cend() ; it++){
+void print_map(map<char, int> Map, unsigned len) {
+    for (auto it = Map.cbegin(); it != Map.cend(); it++) {
         cout << it->first << " - " << it->second << "\n";
     }
     cout << "* - " << len << "\n\n";
 }
 
-map <char, int> get_displacement_arr(string text){
-    map <char, int> displacement;
+map<char, int> get_displacement_arr(string text) {
+    map<char, int> displacement;
     unsigned len = text.length();
 
-    for (int i = len - 2 ; i >= 0 ; i--){
-        if ( displacement.find(text[i]) == displacement.end() ){
-            displacement.insert( pair <char, int>(text[i], len - i - 1) );
+    for (int i = len - 2; i >= 0; i--) {
+        if (displacement.find(text[i]) == displacement.end()) {
+            displacement.insert(pair<char, int>(text[i], len - i - 1));
         }
     }
 
     return displacement;
 }
 
-vector<unsigned> Boyer_Moore(string model, string source){
+vector<unsigned> Boyer_Moore(string model, string source) {
     vector<unsigned> findPos;
 
-    map <char, int> displacement = get_displacement_arr(model);
+    map<char, int> displacement = get_displacement_arr(model);
 
-    cout << source << "\n" << model << "\n\n";
+    cout << source << "\n"
+         << model << "\n\n";
     print_map(displacement, model.length());
 
     unsigned sourceLen = source.length();
@@ -70,23 +71,21 @@ vector<unsigned> Boyer_Moore(string model, string source){
 
     unsigned step = 1;
 
-    while ( modelPosEnd <= sourceLen ){
-        cout << "Step "<< step << ": ";
+    while (modelPosEnd <= sourceLen) {
+        cout << "Step " << step << ": ";
 
-        if ( source.compare(modelPosEnd - modelLen, modelLen, model) ){
-            if ( displacement.find(source[modelPosEnd-1]) != displacement.end() ){
-                cout << displacement[source[modelPosEnd-1]] << "\n";
+        if (source.compare(modelPosEnd - modelLen, modelLen, model)) {
+            if (displacement.find(source[modelPosEnd - 1]) != displacement.end()) {
+                cout << displacement[source[modelPosEnd - 1]] << "\n";
 
-                modelPosEnd += displacement[source[modelPosEnd-1]];
-            }
-            else {
+                modelPosEnd += displacement[source[modelPosEnd - 1]];
+            } else {
                 cout << modelLen << "\n";
 
                 modelPosEnd += modelLen;
             }
-        }
-        else {
-            cout << "Found - " << modelPosEnd - modelLen <<"\n";
+        } else {
+            cout << "Found - " << modelPosEnd - modelLen << "\n";
             findPos.push_back(modelPosEnd - modelLen);
             modelPosEnd++;
         }
@@ -96,7 +95,7 @@ vector<unsigned> Boyer_Moore(string model, string source){
     return findPos;
 }
 
-int main(){
+int main() {
     FILE* sourceFile = fopen("../source.txt", "r");
     FILE* modelFile = fopen("../model.txt", "r");
 

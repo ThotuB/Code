@@ -1,5 +1,5 @@
-#include <iostream>
 #include <fstream>
+#include <iostream>
 
 using namespace std;
 
@@ -7,46 +7,46 @@ ifstream fin("../source.txt");
 
 unsigned steps = 0;
 
-void read(unsigned Arr[], unsigned size){
-    for (unsigned i = 0 ; i < size ; i++){
+void read(unsigned Arr[], unsigned size) {
+    for (unsigned i = 0; i < size; i++) {
         fin >> Arr[i];
     }
 }
 
-void write(unsigned Arr[], unsigned size){
-    for (unsigned i = 0 ; i < size ; i++){
+void write(unsigned Arr[], unsigned size) {
+    for (unsigned i = 0; i < size; i++) {
         cout << Arr[i] << " ";
     }
     cout << "\n";
 }
 
-int interpolation_search(unsigned Arr[], unsigned size, unsigned nr){
+int interpolation_search(unsigned Arr[], unsigned size, unsigned nr) {
     long long unsigned mid, left, right;
-    left = 0; right = size - 1;
+    left = 0;
+    right = size - 1;
 
-    if ( Arr[left] >= nr ){
+    if (Arr[left] >= nr) {
         return -1;
     }
 
-    do{
+    do {
         steps++;
         mid = left + (right - left) * (nr - Arr[left]) / (Arr[right] - Arr[left]);
         //printf("%llu - %llu - %llu\n", left, mid, right);
-        if ( nr > Arr[mid] ){
+        if (nr > Arr[mid]) {
             left = mid + 1;
-        }
-        else {
+        } else {
             right = mid - 1;
         }
-    }while ( (left <= right) && (Arr[mid] != nr) && (Arr[left] != Arr[right]) && (Arr[left] <= nr) && (nr <= Arr[right]) );
+    } while ((left <= right) && (Arr[mid] != nr) && (Arr[left] != Arr[right]) && (Arr[left] <= nr) && (nr <= Arr[right]));
 
-    if ( nr == Arr[mid] ){
+    if (nr == Arr[mid]) {
         return mid;
     }
     return -1;
 }
 
-int main(){
+int main() {
     unsigned Arr[13];
     read(Arr, 13);
     //write(Arr, 13);

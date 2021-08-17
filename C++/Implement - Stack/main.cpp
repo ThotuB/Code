@@ -3,72 +3,71 @@
 using namespace std;
 
 class Stack {
-    private:
-        size_t _size;
-        const size_t MAX_SIZE;
-        int *data;
+   private:
+    size_t _size;
+    const size_t MAX_SIZE;
+    int *data;
 
-    public:
-        // CONSTRUCTOR
-        Stack(const size_t max_size)
-            : _size(0), MAX_SIZE(max_size), data(new int[max_size])
-        {}
+   public:
+    // CONSTRUCTOR
+    Stack(const size_t max_size)
+        : _size(0), MAX_SIZE(max_size), data(new int[max_size]) {}
 
-        // DESTRUCTOR
-        ~Stack(){
-            delete [] data;
+    // DESTRUCTOR
+    ~Stack() {
+        delete[] data;
+    }
+
+    // FULL & EMPTY
+    bool full() {
+        return (_size == MAX_SIZE);
+    }
+
+    bool empty() {
+        return (_size == 0);
+    }
+
+    // PUSH & POP
+    void push(int nr) {
+        if (full()) {
+            cerr << "Error: Stack Full\n";
+            exit(0);
         }
 
-        // FULL & EMPTY
-        bool full(){
-            return ( _size == MAX_SIZE );
+        data[_size] = nr;
+        _size++;
+    }
+
+    int pop() {
+        if (empty()) {
+            cerr << "ERROR: STACK EMPTY\n";
+            exit(0);
         }
 
-        bool empty(){
-            return ( _size == 0 );
+        _size--;
+        return data[_size];
+    }
+
+    // SIZES
+    size_t size() {
+        return _size;
+    }
+
+    const size_t max_size() {
+        return MAX_SIZE;
+    }
+
+    // PRINT
+    void print() {
+        cout << "Stack: ";
+        for (size_t index = 0; index < _size; index++) {
+            cout << data[index] << " ";
         }
-
-        // PUSH & POP
-        void push(int nr){
-            if ( full() ) {
-                cerr << "Error: Stack Full\n";
-                exit(0);
-            }
-
-            data[_size] = nr;
-            _size++;
-        }
-
-        int pop(){
-            if ( empty() ) {
-                cerr << "ERROR: STACK EMPTY\n";
-                exit(0);
-            }
-
-            _size--;
-            return data[_size];
-        }
-
-        // SIZES
-        size_t size(){
-            return _size;
-        }
-
-        const size_t max_size(){
-            return MAX_SIZE;
-        }
-
-        // PRINT
-        void print(){
-            cout << "Stack: ";
-            for (size_t index = 0 ; index < _size ; index++){
-                cout << data[index] << " ";
-            }
-            cout << "\n";
-        }
+        cout << "\n";
+    }
 };
 
-int main(){
+int main() {
     cout << "STACK\n";
     Stack s(3);
     s.push(5);
