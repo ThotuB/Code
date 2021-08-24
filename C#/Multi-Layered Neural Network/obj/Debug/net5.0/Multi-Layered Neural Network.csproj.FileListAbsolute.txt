@@ -1,0 +1,16 @@
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Multi-Layered Neural Network\bin\Debug\net5.0\Multi-Layered Neural Network.exe
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Multi-Layered Neural Network\bin\Debug\net5.0\Multi-Layered Neural Network.deps.json
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Multi-Layered Neural Network\bin\Debug\net5.0\Multi-Layered Neural Network.runtimeconfig.json
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Multi-Layered Neural Network\bin\Debug\net5.0\Multi-Layered Neural Network.runtimeconfig.dev.json
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Multi-Layered Neural Network\bin\Debug\net5.0\Multi-Layered Neural Network.dll
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Multi-Layered Neural Network\bin\Debug\net5.0\ref\Multi-Layered Neural Network.dll
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Multi-Layered Neural Network\bin\Debug\net5.0\Multi-Layered Neural Network.pdb
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Multi-Layered Neural Network\obj\Debug\net5.0\Multi-Layered Neural Network.csproj.AssemblyReference.cache
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Multi-Layered Neural Network\obj\Debug\net5.0\Multi-Layered Neural Network.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Multi-Layered Neural Network\obj\Debug\net5.0\Multi-Layered Neural Network.AssemblyInfoInputs.cache
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Multi-Layered Neural Network\obj\Debug\net5.0\Multi-Layered Neural Network.AssemblyInfo.cs
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Multi-Layered Neural Network\obj\Debug\net5.0\Multi-Layered Neural Network.csproj.CoreCompileInputs.cache
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Multi-Layered Neural Network\obj\Debug\net5.0\Multi-Layered Neural Network.dll
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Multi-Layered Neural Network\obj\Debug\net5.0\ref\Multi-Layered Neural Network.dll
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Multi-Layered Neural Network\obj\Debug\net5.0\Multi-Layered Neural Network.pdb
+C:\Users\bogda\OneDrive\Documents\GitHub\Code\C#\Multi-Layered Neural Network\obj\Debug\net5.0\Multi-Layered Neural Network.genruntimeconfig.cache
