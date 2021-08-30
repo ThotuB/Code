@@ -19,19 +19,22 @@ class KochCollection {
         return atan2(y2 - y1, x2 - x1);
     }
 
-    static split(Ax, Ay, Bx, By, index){
-        let x1 =  Ax + (Bx - Ax) /3;
-        let y1 =  Ay + (By - Ay) /3;
-
+    split(Ax, Ay, Bx, By, index){
         let angle = KochCollection.calcAngle(Ax, Ay, Bx, By);
+
+        let x1 =  Ax + length * cos(angle);
+        let y1 =  Ay + length * sin(angle);
+
         let x2 = x1 + length * cos(angle - PI/3);
         let y2 = y1 + length * sin(angle - PI/3);
 
-        let x3 =  Ax + (Bx - Ax) /3 * 2;
-        let y3 =  Ay + (By - Ay) /3 * 2;
+        let x3 =  x2 + length * cos(angle + PI/3);
+        let y3 =  y2 + length * sin(angle + PI/3);
 
-        this.xs.splice(i+1, 0, ...[x1, x2, x3]);
-        this.xs.splice(i+1, 0, ...[y1, y2, y3]);
+        this.xs.splice(index+1, 0, ...[x1, x2, x3]);
+        this.ys.splice(index+1, 0, ...[y1, y2, y3]);
+
+        this.length += 3;
     }
 
     static drawLine(x1, y1, x2, y2) {

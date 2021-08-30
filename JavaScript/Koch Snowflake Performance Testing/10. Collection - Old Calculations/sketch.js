@@ -30,7 +30,7 @@ function mousePressed() {
     let timer = millis();
     
     for (let i = 0 ; i < list.xs.length - 1 ; i += 4) {
-        KochCollection.split(list.xs[i], list.ys[i], list.xs[i+1], list.ys[i+1]);
+        list.split(list.xs[i], list.ys[i], list.xs[i+1], list.ys[i+1], i);
     }
 
     console.log(iter + " - " + (millis() - timer));
