@@ -29,8 +29,10 @@ class Factory {
 
 class Program1 {
     public static void Main(String[] args) {
-        IProduct p = Factory.CreateProduct("A");
-        p.Use();
+        IProduct a = Factory.CreateProduct("A");
+        IProduct b = Factory.CreateProduct("B");
+        a.Use();
+        b.Use();
     }
 }
 

@@ -167,11 +167,14 @@ if __name__ == '__main__':
     [rads1, dists1] = t.get_intersect_distances()
     [rads2, dists2] = t.calc_intersect_distances()
 
+    p = Point(1, 1)
+    p2 = Point(2, 2)
+
     print(dists1)
     print(dists2)
 
-    # with open('distances.csv', 'w', newline='') as csvfile:
-    #     writer = csv.writer(csvfile, delimiter=',')
-    #     writer.writerow(['Radians', 'Distance'])
-    #     for rad, dist in zip(rads1, dists1):
-    #         writer.writerow([rad, dist])
+    with open('distances.csv', 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile, delimiter=',')
+        writer.writerow(['Radians', 'Distance'])
+        for rad, dist in zip(rads1, dists1):
+            writer.writerow([rad, dist])

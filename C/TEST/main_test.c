@@ -1,108 +1,106 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <stdbool.h>
 
-#define ARRAY_SIZE 1000
+#define MAX 100
 
-struct record {
-    char name[32];
-    int budget;
-    int year;
-    struct record* next;
+struct graf {
+    int costuri[MAX][MAX];
+    int nrNoduri;
 };
 
-typedef struct record record_t;
+struct graf* setareGraf(int nrNoduri) {
+    struct graf* graf = (struct graf*)malloc(sizeof(struct graf));
+    graf->nrNoduri = nrNoduri;
 
-record_t* makeNewRecord() {
-    record_t* newRecord = (record_t*)malloc(sizeof(record_t));
-    strcpy(newRecord->name, "null");
-    newRecord->budget = -1;
-    newRecord->year = -1;
-    newRecord->next = NULL;
-    return newRecord;
-}
-
-void printRecord(record_t* record) {
-    printf("%s, %d, %d\n", record->name, record->year, record->budget);
-}
-
-int compare(record_t* mov1, record_t* mov2) {
-    if (mov1->year == mov2->year)
-        return strcmp(mov1->name, mov2->name);
-
-    return mov2->year - mov1->year;
-}
-
-void insertRecord(record_t** headPtr, record_t* record) {
-    if (*headPtr == NULL) {
-        *headPtr = record;
-        return;
-    }
-
-    record_t* head = *headPtr;
-    if (compare(head, record) < 0) {
-        record->next = head;
-        *headPtr = record;
-        return;
-    }
-    while (compare(head->next, record) >= 0 && head->next != NULL)
-        head = head->next;
-
-    if (head->next == NULL) {
-        head->next = malloc(sizeof(record_t));
-        head->next = record;
-    } else {
-        record->next = head->next;
-        head->next = record;
-    }
-}
-
-void printAll(record_t* head) {
-    record_t* temp = head;
-    while (temp != NULL) {
-        printRecord(temp);
-        temp = temp->next;
-    }
-}
-
-void readCSV(FILE* fin, record_t** headPtr) {
-    char line[1024];
-    char* token;
-    int step = 0;
-    int count = 0;
-    while (fgets(line, 1024, fin)) {
-        step = 0;
-        token = strtok(line, ",");
-        record_t* newRecord = makeNewRecord();
-        while (token != NULL) {
-            if (strcmp(token, "") != 0 && strcmp(token, "\n") != 0) {
-                if (step == 0)
-                    newRecord->year = atoi(token);
-                if (step == 2)
-                    strncpy(newRecord->name, token, 32);
-                if (step == 10)
-                    newRecord->budget = atoi(token);
-            }
-            token = strtok(NULL, ",");
-            step++;
+    for (int i = 0; i < nrNoduri; i++) {
+        for (int j = 0; j < nrNoduri; j++) {
+            graf->costuri[i][j] = -1;
         }
-        insertRecord(headPtr, newRecord);
-        count++;
+    }
+
+    return graf;
+}
+
+void printareGraf(struct graf* graf) {
+    for (int i = 0; i < graf->nrNoduri; i++) {
+        for (int j = 0; j < graf->nrNoduri; j++) {
+            printf("%d ", graf->costuri[i][j]);
+        }
+        printf("\n");
     }
 }
 
-int main(int argc, char* argv[]) {
-    FILE* fin = fopen("movies.csv", "r");
+void oraseDinCareSePleaca(struct graf* graf) {
+    for (int i = 0; i < graf->nrNoduri; i++) {
+        int plecare = 0;
+        int sosire = 0;
+        for (int j = 0; j < graf->nrNoduri; j++) {
+            if (graf->costuri[i][j] != -1) {
+                plecare++;
+            }
+            if (graf->costuri[j][i] != -1) {
+                sosire++;
+            }
+        }
 
-    record_t* head = NULL;
-
-    readCSV(fin, &head);
-
-    record_t* temp = head;
-    while (temp != NULL) {
-        printRecord(temp);
-        temp = temp->next;
+        if ( plecare > sosire ){
+            printf("%d ", i);
+        }
     }
+}
+
+void cmld_backtracking(struct graf* graf, int nod, int distantaTotala, bool viz[], int nrViz, int drum[], int distantaMax, int drumLung[])  {  
+    viz[nod] = true;
+    drum[nrViz] = nod;
+
+    if (nrViz == graf->nrNoduri - 1) {
+        if (distantaTotala > distantaMax) {
+            distantaMax = distantaTotala;
+            for (int i = 0; i < graf->nrNoduri; i++) {
+                drumLung[i] = drum[i];
+            }
+        }
+    }
+    else {
+        for (int i = 0; i < graf->nrNoduri; i++) {
+            if (graf->costuri[nod][i] != -1 && !viz[i]) {
+                cmld_backtracking(graf, i, distantaTotala + graf->costuri[nod][i], viz, nrViz + 1, drum, distantaMax, drumLung);
+                viz[i] = false;
+            }
+        }
+    }
+
+}
+
+void celMaiLungDrum(struct graf* graf) {
+    bool viz[MAX];
+    for (int i = 0; i < graf->nrNoduri; i++) {
+        viz[i] = false;
+    }
+    int drum[MAX];
+    int drumLung[MAX];
+
+    cmld_backtracking(graf, 0, 0, viz, 0, drum, -1, drumLung);
+    
+    for (int i = 0; i < graf->nrNoduri; i++) {
+        printf("%d ", drumLung[i]);
+    }
+}
+
+int main() {
+    struct graf* graf = setareGraf(3);
+
+    graf->costuri[0][1] = 1;
+    graf->costuri[0][2] = 3;
+    graf->costuri[1][2] = 2;
+    graf->costuri[1][0] = 1;
+    graf->costuri[2][0] = 1;
+    graf->costuri[2][1] = 2;
+
+    printareGraf(graf);
+
+    celMaiLungDrum(graf);
 
     return 0;
 }
