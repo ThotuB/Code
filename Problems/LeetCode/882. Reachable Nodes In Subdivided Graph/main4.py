@@ -1,39 +1,82 @@
-# Floyd-Warshall Method
-def Print_Matrix(matrix):
-    for row in matrix:
-        for elem in row:
-            if elem == 100:
-                print('-', end=' ')
-            else:
-                print(elem, end=' ')
-        print()
+# Object Version
+# Nodes and Subnodes
+# Breadth First Search
 
-def Floyd_Warshall(graph):
-    n = len(graph)
-    for k in range(n):
-        for i in range(n):
-            for j in range(n):
-                if graph[i][k] + graph[k][j] < graph[i][j]:
-                    graph[i][j] = graph[i][k] + graph[k][j]
-    return graph
+#! Time Limit Exceeded
 
-def Reachable_Nodes(edges: list[list[int]], max_moves: int, n: int) -> int:
-    graph = [[100 for _ in range(n)] for _ in range(n)]
+name = ''
+ctr = 0
 
-    for u, v, subnodes in edges:
-        graph[u][v] = subnodes
-        graph[v][u] = subnodes
+class Node:
+    def __init__(self):
+        self.name= None
+        self.neighbors = []
+        self.visited = False
+        self.depth = 0
 
-    Print_Matrix(graph)
+class Graph:
+    def __init__(self, edges: list[list[int]], n: int):
+        self.n = n
+        self.nodes = [Node() for _ in range(n)]
 
-    Floyd_Warshall(graph)
-    
-    Print_Matrix(graph)
+        for u, v, subnodes in edges:
+            global name, ctr
+            name = f'{u}{v}'
+            ctr = 1
+            self.insert_subnodes(u, v, subnodes)
 
+    def insert_subnodes(self, u, v, subnodes):
+        def insert_subnodes(node1, node2, subnodes):
+            if subnodes == 0:
+                node2.neighbors += [node1]
 
-if __name__ == "__main__":
-    edges = [[0, 4, 1], [0, 3, 3], [3, 1, 2], [3, 2, 3], [1, 2, 5]]
-    max_moves = 7
+                return node2
+            
+            subnode = Node()
+            global name, ctr
+            subnode.name = f'{name}{ctr}'
+            ctr += 1
+            subnode.neighbors += [node1, insert_subnodes(subnode, node2, subnodes - 1)]
+
+            return subnode
+
+        self[u].neighbors += [insert_subnodes(self[u], self[v], subnodes)]
+
+    def __getitem__(self, key):
+        return self.nodes[key]
+
+def Reachable_Nodes(graph: Graph, max_moves: int):
+    def bfs(node: Node, max_depth: int):
+        reached = 0
+
+        node.visited = True
+        node.depth = 0
+        node_queue = [node]
+
+        while node_queue:
+            node = node_queue.pop(0)
+
+            reached += 1
+            
+            if node.depth == max_depth:
+                continue
+
+            for neighbor in node.neighbors:
+                if neighbor.visited:
+                    continue
+
+                neighbor.visited = True
+                neighbor.depth = node.depth + 1
+                node_queue += [neighbor]
+
+        return reached
+
+    return bfs(graph[0], max_moves)
+
+if __name__ == '__main__':
+    edges = [[2,4,2],[3,4,5],[2,3,1],[0,2,1],[0,3,5]]
+    max_moves = 14
     n = 5
 
-    print(Reachable_Nodes(edges, max_moves, n))
+    graph = Graph(edges, n)
+    print(Reachable_Nodes(graph, max_moves))

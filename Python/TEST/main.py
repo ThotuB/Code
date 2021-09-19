@@ -1,6 +1,10 @@
-import json
-from json import JSONEncoder
+class Obj:
+    def __init__(this, name, age):
+        this.name = name
+        this.age = age
+    def __str__(this):
+        return 'name: ' + this.name + ' age: ' + str(this.age)
 
-lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-elem = lst[-1]
-print(elem)
+
+obj = Obj('Tom', 18)
+print(obj)

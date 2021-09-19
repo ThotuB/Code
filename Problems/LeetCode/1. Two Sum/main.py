@@ -1,4 +1,4 @@
-def twoSum(self, nums: list[int], target: int) -> list[int]:
+def twoSum(nums: list[int], target: int) -> list[int]:
     complementMap = dict()
     
     for i in range(len(nums)):
