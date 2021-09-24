@@ -1,10 +1,4 @@
-class Obj:
-    def __init__(this, name, age):
-        this.name = name
-        this.age = age
-    def __str__(this):
-        return 'name: ' + this.name + ' age: ' + str(this.age)
+x = 0b0011
+y = 0b0101
 
-
-obj = Obj('Tom', 18)
-print(obj)
+print(f'{x^y:04b}')
