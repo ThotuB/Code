@@ -1,5 +1,4 @@
 import threading
-from asyncio import run, sleep
 
 def printFoo():
     print("foo")
