@@ -1,27 +1,27 @@
+# Coin Flip Generator
 from threading import Thread, Semaphore
 
-sem1 = Semaphore(0)
-sem2 = Semaphore(2)
+class Coin:
+    def __init__(self):
+        self.sem = Semaphore(0)
 
-def Thread1():
-    for i in range(6):
-        sem2.acquire()
+    def Heads(self):
+        self.sem.acquire()
+        print("H", end='')
 
-        print("Thread 1")
+    def Tails(self):
+        self.sem.acquire()
+        print("T", end='')
 
-        sem1.release()
-    
+    def flip(self, n: int):
+        for _ in range(n):
+            Thread(target=self.Heads).start()
+            Thread(target=self.Tails).start()
 
-def Thread2():
-    for i in range(6):
-        sem1.acquire()
-        sem1.acquire()
-
-        print("Thread 2")
-
-        sem2.release()
-
+        for _ in range(2*n):
+            self.sem.release()
+        
 
 if __name__ == "__main__":
-    Thread(target=Thread1).start()
-    Thread(target=Thread2).start()
+    coin = Coin()
+    coin.flip(10)
