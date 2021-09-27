@@ -1,3 +1,5 @@
+import sys, os
+sys.path += [os.path.abspath(sys.path[0] + '/../~ Decorator')]
 from timer import timeit
 
 @timeit(iter=10_000_000)
@@ -31,8 +33,9 @@ def multiplication_15_fast():
 if __name__ == '__main__':
     power_operator(2)
     multiplication_2()
+    
     power_operator(15)
-    multiplication_15_slow()
-    multiplication_15_moderate()
-    multiplication_15_fast()
+    multiplication_15_slow() # compiler optimized probably
+    multiplication_15_moderate() # slowest multiplication_15
+    multiplication_15_fast() # 2nd slowest multiplication_15
     

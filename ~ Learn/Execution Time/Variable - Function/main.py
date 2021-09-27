@@ -1,3 +1,5 @@
+import sys, os
+sys.path += [os.path.abspath(sys.path[0] + '/../~ Decorator')]
 from timer import timeit
 
 class Object1:
