@@ -9,7 +9,7 @@ void print(const int arr[], int n){
 }
 
 int main(){
-    print((const int[]){1,2,3,4,5}, 5);
+    cout << "plm";
     
     return 0;
 }
