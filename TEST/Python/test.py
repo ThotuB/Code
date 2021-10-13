@@ -1,13 +1,4 @@
-class Cls:
-    def __init__(self):
-        self.a = 1
+import cmath
 
-    def plmfunc(self):
-        return 'plm'
-
-def plm(obj):
-    return obj.a
-
-
-obj = Cls()
-print(plm(obj))
+z = complex(2, 3)
+print(1 + z)

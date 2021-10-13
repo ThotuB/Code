@@ -32,7 +32,7 @@ class Button extends Component {
 
     handleClick() {
         console.log("handleClick");
-        this.setState({
+        this.setState ({
             counter: this.state.counter + 1
         });
         if ( this.state.counter % 5 === 0 ) {

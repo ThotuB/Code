@@ -1,1 +1,2 @@
-print_string "hello world";;
+let n = 2;;
+n := 3;;

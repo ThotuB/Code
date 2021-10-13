@@ -1,6 +1,6 @@
 import fs from 'fs'
 
-let data = fs.readFileSync('./data.csv', 'utf8')
+let data = fs.readFile('./data.csv', 'utf8')
 
 /// Get Total Spent
 let total = data

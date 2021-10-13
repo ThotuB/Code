@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-import math
+from math import log
 
 def Is_Prime(n):
     if n < 2:
@@ -30,7 +30,7 @@ def Graph_Nr_Of_Primes(n):
 
         y.append(nr_primes)
         # y_approx1.append(i/10)
-        y_approx2.append(i/math.log(i))
+        y_approx2.append(i/log(i))
 
     plt.plot(x, y, 'r-', label='Actual')
     # plt.plot(x, y_approx1, 'b-', label='x/10')
@@ -39,5 +39,5 @@ def Graph_Nr_Of_Primes(n):
 
 
 if __name__ == "__main__":
-    Graph_Nr_Of_Primes(10000)
+    Graph_Nr_Of_Primes(100)
 
