@@ -1,12 +1,6 @@
-let lst = [1, 2, 3, 4, 5, 1, 1, 2, 4];
+let arr1 = [1, 2, 3];
+let arr2 = [4, 5, 6];
 
-let lst2 = lst.reduce((acc, elem) => {
-    if ( acc[elem] == undefined ) {
-        acc[elem] = 1;
-    } else {
-        acc[elem]++;
-    }
-    return acc;
-}, {});
+let arr = arr1 + arr2;
 
-console.log(lst2)
+console.log(typeof arr);

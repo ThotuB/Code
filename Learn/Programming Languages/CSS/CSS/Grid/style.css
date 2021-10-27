@@ -1,0 +1,55 @@
+:root {
+    background-color: #2b2b2b;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 100px;
+    font-family: 'Consolas', monospace;
+}
+
+.container {
+    position: relative;
+    margin: 0.1em auto 0.1em auto;
+    width: 12em;
+}
+
+.flexbox {
+    background-color: #111 ;
+    height: 1em;
+
+    gap: 0.1em;
+    padding: 0.1em;
+}
+
+.label {
+    position: absolute;;
+    width: 100%;
+    text-align: center;
+    z-index: 1;
+}
+
+.b {
+    width: 1em;
+}
+
+.b1 {
+    background-color: #ba97f8;
+}
+
+.b2 {
+    background-color: #bf7ad4;
+}
+
+.b3 {
+    background-color: #c35db0;
+}
+
+.b4 {
+    background-color: #c8418c;
+}
+
+.b5 {
+    background-color: #cc2468;
+}
+
+.b6 {
+    background-color: #d10744;
+}

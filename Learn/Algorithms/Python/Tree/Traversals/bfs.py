@@ -4,14 +4,13 @@ from tree import Tree, presetTree
 
 
 def bfs(tree: Tree) -> None:
-    if tree.root is None:
-        return
-
+    """
+        Basic BFS traversal
+    """
     queue = [tree.root]
+
     while queue:
         node = queue.pop(0)
-
-        print(node.data, end=' ')
 
         for child in node.children:
             queue += [child]
@@ -19,4 +18,3 @@ def bfs(tree: Tree) -> None:
 
 if __name__ == '__main__':
     tree = presetTree()
-    bfs(tree)

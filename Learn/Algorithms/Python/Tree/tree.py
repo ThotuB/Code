@@ -9,6 +9,9 @@ class Node:
         self.children += [new_node]
 
         return new_node
+
+    def __repr__(self):
+        return str(self.data)
         
 
 class Tree:
