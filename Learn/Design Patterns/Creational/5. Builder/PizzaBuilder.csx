@@ -24,13 +24,11 @@ class Pizza {
 
         public Builder AddToppings(string[] toppings) {
             this.toppings = toppings;
-
             return this;
         }
 
         public Builder AddSauces(string[] sauces) {
             this.sauces = sauces;
-            
             return this;
         }
 

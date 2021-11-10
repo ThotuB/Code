@@ -1,7 +1,7 @@
 class PrototypeRegistry {
     private static Dictionary<string, Prototype> registry = new Dictionary<string, Prototype>();
 
-    public static void AddItem(Prototype prototype) {
+    public void AddItem(Prototype prototype) {
         registry[prototype.GetID()] = prototype;
     }
 
@@ -11,8 +11,8 @@ class PrototypeRegistry {
 }
 
 interface Prototype {
-    public string GetID();
-    public Prototype Clone();
+    string GetID();
+    Prototype Clone();
 }
 
 class Square : Prototype {

@@ -1,10 +1,10 @@
 interface Prototype {
-    public Prototype Clone();
+    Prototype Clone();
 }
 
 class Vector2 : Prototype {
-    private int x;
-    private int y;
+    protected int x;
+    protected int y;
 
     public Vector2(int x, int y) {
         this.x = x;
@@ -23,7 +23,7 @@ class Vector3 : Vector2 {
         this.z = z;
     }
 
-    public Prototype Clone() {
+    public new Prototype Clone() {
         return new Vector3(x, y, z);
     }
 }

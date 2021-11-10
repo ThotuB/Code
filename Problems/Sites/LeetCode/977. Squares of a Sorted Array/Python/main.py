@@ -1,4 +1,4 @@
-def sortedSquares(self, nums: list[int]) -> list[int]:
+def sortedSquares(nums: list[int]) -> list[int]:
     negative_squares = []
     positive_squares = []
 
