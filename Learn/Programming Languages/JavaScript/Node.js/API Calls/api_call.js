@@ -1,20 +1,13 @@
 const axios = require("axios").default;
+const fs = require("fs");
 
+id = 1965765
 api_key = 'U90ctjxNwICMOKnJnyqB2kDuKgpqL2dG7vBB03lZ'
-url = `https://api.nal.usda.gov/fdc/v1/search`
+url = `https://api.nal.usda.gov/fdc/v1/food/${id}?api_key=${api_key}`
 
-function get_foods() {
-    return axios.get(url, {
-        params: {
-            api_key: api_key,
-            generalSearchInput: 'chicken',
-            pageNumber: 2,
-            pageSize: 3
-        }
+axios.get(url)
+    .then(response => {
+        const food = response.data;
+        
+        fs.writeFileSync('./food.json', JSON.stringify(food, null, 2));
     })
-}
-
-get_foods()
-.then(response => {
-    console.log(response.data.foods[0].foodNutrients);
-})

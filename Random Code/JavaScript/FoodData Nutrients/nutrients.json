@@ -1,0 +1,286 @@
+{
+    "1003": {
+        "name": "Protein",
+        "number": "203"
+    },
+    "1004": {
+        "name": "Total lipid (fat)",
+        "number": "204"
+    },
+    "1005": {
+        "name": "Carbohydrate, by difference",
+        "number": "205"
+    },
+    "1008": {
+        "name": "Energy",
+        "number": "208"
+    },
+    "1026": {
+        "name": "Acetic acid",
+        "number": "230"
+    },
+    "1038": {
+        "name": "Lactic acid",
+        "number": "242"
+    },
+    "1056": {
+        "name": "Sorbitol",
+        "number": "261"
+    },
+    "1072": {
+        "name": "Carbohydrate, other",
+        "number": "284"
+    },
+    "1079": {
+        "name": "Fiber, total dietary",
+        "number": "291"
+    },
+    "1082": {
+        "name": "Fiber, soluble",
+        "number": "295"
+    },
+    "1084": {
+        "name": "Fiber, insoluble",
+        "number": "297"
+    },
+    "1086": {
+        "name": "Total sugar alcohols",
+        "number": "299"
+    },
+    "1087": {
+        "name": "Calcium, Ca",
+        "number": "301"
+    },
+    "1089": {
+        "name": "Iron, Fe",
+        "number": "303"
+    },
+    "1090": {
+        "name": "Magnesium, Mg",
+        "number": "304"
+    },
+    "1091": {
+        "name": "Phosphorus, P",
+        "number": "305"
+    },
+    "1092": {
+        "name": "Potassium, K",
+        "number": "306"
+    },
+    "1093": {
+        "name": "Sodium, Na",
+        "number": "307"
+    },
+    "1095": {
+        "name": "Zinc, Zn",
+        "number": "309"
+    },
+    "1096": {
+        "name": "Chromium, Cr",
+        "number": "310"
+    },
+    "1098": {
+        "name": "Copper, Cu",
+        "number": "312"
+    },
+    "1100": {
+        "name": "Iodine, I",
+        "number": "314"
+    },
+    "1101": {
+        "name": "Manganese, Mn",
+        "number": "315"
+    },
+    "1102": {
+        "name": "Molybdenum, Mo",
+        "number": "316"
+    },
+    "1103": {
+        "name": "Selenium, Se",
+        "number": "317"
+    },
+    "1104": {
+        "name": "Vitamin A, IU",
+        "number": "318"
+    },
+    "1109": {
+        "name": "Vitamin E (alpha-tocopherol)",
+        "number": "323"
+    },
+    "1110": {
+        "name": "Vitamin D (D2 + D3), International Units",
+        "number": "324"
+    },
+    "1114": {
+        "name": "Vitamin D (D2 + D3)",
+        "number": "328"
+    },
+    "1124": {
+        "name": "Vitamin E (label entry primarily)",
+        "number": "340"
+    },
+    "1158": {
+        "name": "Vitamin E",
+        "number": "394"
+    },
+    "1162": {
+        "name": "Vitamin C, total ascorbic acid",
+        "number": "401"
+    },
+    "1165": {
+        "name": "Thiamin",
+        "number": "404"
+    },
+    "1166": {
+        "name": "Riboflavin",
+        "number": "405"
+    },
+    "1167": {
+        "name": "Niacin",
+        "number": "406"
+    },
+    "1170": {
+        "name": "Pantothenic acid",
+        "number": "410"
+    },
+    "1175": {
+        "name": "Vitamin B-6",
+        "number": "415"
+    },
+    "1176": {
+        "name": "Biotin",
+        "number": "416"
+    },
+    "1177": {
+        "name": "Folate, total",
+        "number": "417"
+    },
+    "1178": {
+        "name": "Vitamin B-12",
+        "number": "418"
+    },
+    "1180": {
+        "name": "Choline, total",
+        "number": "421"
+    },
+    "1185": {
+        "name": "Vitamin K (phylloquinone)",
+        "number": "430"
+    },
+    "1186": {
+        "name": "Folic acid",
+        "number": "431"
+    },
+    "1190": {
+        "name": "Folate, DFE",
+        "number": "435"
+    },
+    "1210": {
+        "name": "Tryptophan",
+        "number": "501"
+    },
+    "1211": {
+        "name": "Threonine",
+        "number": "502"
+    },
+    "1212": {
+        "name": "Isoleucine",
+        "number": "503"
+    },
+    "1213": {
+        "name": "Leucine",
+        "number": "504"
+    },
+    "1214": {
+        "name": "Lysine",
+        "number": "505"
+    },
+    "1215": {
+        "name": "Methionine",
+        "number": "506"
+    },
+    "1216": {
+        "name": "Cystine",
+        "number": "507"
+    },
+    "1217": {
+        "name": "Phenylalanine",
+        "number": "508"
+    },
+    "1218": {
+        "name": "Tyrosine",
+        "number": "509"
+    },
+    "1219": {
+        "name": "Valine",
+        "number": "510"
+    },
+    "1220": {
+        "name": "Arginine",
+        "number": "511"
+    },
+    "1221": {
+        "name": "Histidine",
+        "number": "512"
+    },
+    "1222": {
+        "name": "Alanine",
+        "number": "513"
+    },
+    "1223": {
+        "name": "Aspartic acid",
+        "number": "514"
+    },
+    "1224": {
+        "name": "Glutamic acid",
+        "number": "515"
+    },
+    "1225": {
+        "name": "Glycine",
+        "number": "516"
+    },
+    "1226": {
+        "name": "Proline",
+        "number": "517"
+    },
+    "1227": {
+        "name": "Serine",
+        "number": "518"
+    },
+    "1235": {
+        "name": "Sugars, added",
+        "number": "539"
+    },
+    "1253": {
+        "name": "Cholesterol",
+        "number": "601"
+    },
+    "1257": {
+        "name": "Fatty acids, total trans",
+        "number": "605"
+    },
+    "1258": {
+        "name": "Fatty acids, total saturated",
+        "number": "606"
+    },
+    "1269": {
+        "name": "PUFA 18:2",
+        "number": "618"
+    },
+    "1292": {
+        "name": "Fatty acids, total monounsaturated",
+        "number": "645"
+    },
+    "1293": {
+        "name": "Fatty acids, total polyunsaturated",
+        "number": "646"
+    },
+    "1368": {
+        "name": "Epigallocatechin-3-gallate",
+        "number": "753"
+    },
+    "2000": {
+        "name": "Sugars, total including NLEA",
+        "number": "269"
+    }
+}

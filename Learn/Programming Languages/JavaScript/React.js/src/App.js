@@ -3,14 +3,14 @@
 import Lifecycle from './Lifecycle/lifecycle';
 // import UseState from './Hooks/use_state';
 // import UseEffect from './Hooks/use_effect';
-// import UseContext from './Hooks/use_context';
+import UseContext from './Hooks/use_context';
 
 function App() {
-  return (
-    <div className="App">
-      <Lifecycle />
-    </div>
-  );
+    return (
+        <div className="App">
+            <Lifecycle />
+        </div>
+    );
 }
 
 export default App;
