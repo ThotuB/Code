@@ -1,8 +1,25 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-int main(int argc, char **argv) {
-    float plm = 019.342;
-    printf("%f\n", plm);
+void print_char(char *a)
+{
+    a[0]++;
+    printf("%s\n", a);
+}
+
+void print_num(int a)
+{
+    printf("%d\n", ++a);
+    printf("%d\n", a++);
+}
+
+int main()
+{
+    char a[] = "Hello";
+    print_char(a);
+
+    print_char("hello");
+
+    print_num(5);
+
+    return 0;
 }

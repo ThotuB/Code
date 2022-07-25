@@ -1,6 +1,35 @@
-let arr1 = [1, 2, 3];
-let arr2 = [4, 5, 6];
+function findWinningCardIndex(board, trump) {
+    let winningCardIndex = 0;
 
-let arr = arr1 + arr2;
+    for (let i = 1; i < board.length; i++) {
+        const card = board[i];
+        const winningCard = board[winningCardIndex];
 
-console.log(typeof arr);
+        if (winningCard.suit !== trump && card.suit === trump) {
+            winningCardIndex = i;
+        }
+        else if (card.suit === winningCard.suit && card.value > winningCard.value) {
+            winningCardIndex = i;
+        }
+    }
+
+    return winningCardIndex;
+}
+
+const cards = [{
+    suit: 'spades',
+    value: 2
+}, {
+    suit: 'spades',
+    value: 10
+}, {
+    suit: 'hearts',
+    value: 1
+}, {
+    suit: 'hearts',
+    value: 2
+}]
+
+const trump = 'clubs';
+
+console.log(findWinningCardIndex(cards, trump));

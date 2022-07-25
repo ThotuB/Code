@@ -1,39 +1,43 @@
 #include <iostream>
+#include <vector>
 
-using namespace std;
+class A {
+public:
+    virtual void method() {
+        std::cout << "Hello\n";
+    }
 
-int v[20], n;
+    virtual ~A() = default;
+};
 
-void citire();
-void verif(int n, int x, int &ok, float &r);
+class B : public A {
+public:
+    void method() override {
+        std::cout << "Hi\n";
+    }
+
+    virtual ~B() = default;
+};
+
+bool is_palindrome(std::string input) {
+    int size = input.length();
+    for (int i = 0; i < size / 2 ; i++) {
+        if (input[i] != input[size-i]) {
+            return false;
+        }
+    }
+    return true;
+}
 
 int main() {
-    int x, ok, r;
-    citire();
+    std::vector<A*> vec;
+    vec.push_back(new A());
+    vec.push_back(new A());
+    vec.push_back(new B());
 
-    cin >> x;
-    verif(n, x, ok, 0);
-
-    if (ok == 0) cout << "nu exista";
-    return 0;
-}
-void citire() {
-    int i;
-    cin >> n;
-    for (i = 0; i < n; i++) {
-        cin >> v[i];
+    for (auto elem : vec) {
+        elem->method();
     }
-}
-void verif(int n, int x, int &ok, float &r) {
-    int i;
-    ok = 0;
-    if (n > 0) {
-        for (i = 0; i <= n; i++) {
-            if (v[i] == x) {
-                ok = 1;
-                r = r + 1;
-            }
-        }
-    } else
-        cout << r;
+
+    vec.clear();
 }
