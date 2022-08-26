@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 
+using namespace std;
+
 class A {
 public:
     virtual void method() {
@@ -29,15 +31,17 @@ bool is_palindrome(std::string input) {
     return true;
 }
 
-int main() {
-    std::vector<A*> vec;
-    vec.push_back(new A());
-    vec.push_back(new A());
-    vec.push_back(new B());
-
-    for (auto elem : vec) {
-        elem->method();
+template <typename T>
+void print_vector(std::vector<T>& vec) {
+    for (auto& elem : vec) {
+        std::cout << elem << " ";
     }
+    std::cout << std::endl;
+}
 
-    vec.clear();
+int main(char argc, char** argv) {
+    std::vector<const A*> vec;
+
+    A* a = new A();
+    vec.push_back(a);
 }
