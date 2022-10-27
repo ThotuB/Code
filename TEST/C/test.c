@@ -1,16 +1,10 @@
 #include <stdio.h>
 
-void print_char(char *a)
-{
-    a[0]++;
-    printf("%s\n", a);
+int create_int() {
+    return 32;
 }
 
-void print_num(int a)
-{
-    printf("%d\n", ++a);
-    printf("%d\n", a++);
-}
+int a = create_int();
 
 int main()
 {
