@@ -1,12 +1,6 @@
-// create rust-like std::result::Result in C#
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 public class Result<T, E>
+    where T : class
+    where E : class
 {
     public enum ResultType
     {
@@ -19,38 +13,50 @@ public class Result<T, E>
 
     public ResultType Type { get; private set; }
 
-    public static Result FromOk(T value)
+    public Result(Ok<T> ok)
     {
-        Value = value;
+        Value = ok.Value;
         Type = ResultType.Ok;
     }
 
-    public Result(E error)
+    public Result(Error<E> error)
     {
-        Error = error;
+        Error = error.Value;
         Type = ResultType.Error;
     }
 
     public bool IsOk => Type == ResultType.Ok;
-
     public bool IsError => Type == ResultType.Error;
 
     public bool IsOkAnd(Func<T, bool> predicate) => IsOk && predicate(Value);
-
     public bool IsErrorAnd(Func<E, bool> predicate) => IsError && predicate(Error);
+
+    public T GetOk() => IsOk ? Value : null;
+    public E GetError() => IsError ? Error : null;
+
+    public T Expect(string message) => IsOk ? Value : throw new Exception(message);
+    public E ExpectError(string message) => IsError ? Error : throw new Exception(message);
+
+    public T Unwrap() => IsOk ? Value : throw new Exception($"Unwrap called on Error: {Error}");
+    public E UnwrapError() => IsError ? Error : throw new Exception($"UnwrapError called on Ok: {Value}");
+
+    public T UnwrapOr(T defaultValue) => IsOk ? Value : defaultValue;
+
+    public static implicit operator bool(Result<T, E> result) => result.IsOk;
 }
 
 public class Ok<T>
+    where T : class
 {
     public T Value { get; private set; }
 
-    public Ok(T value)
-    {
+    public Ok(T value) {
         Value = value;
     }
 }
 
 public class Error<E>
+    where E : class
 {
     public E Value { get; private set; }
 
@@ -62,15 +68,11 @@ public class Error<E>
 
 class Program {
     public static void Main(string[] args) {
-        var result = new Result<string, string>("Hello World");
+        var result = new Result<string, string>(new Ok<string>("Hello World"));
         Console.WriteLine(result.IsOk);
         Console.WriteLine(result.IsError);
-        Console.WriteLine(result.Ok().Value);
-        Console.WriteLine(result.Error().Value);
         Console.WriteLine(result.IsOkAnd(x => x == "Hello World"));
         Console.WriteLine(result.IsErrorAnd(x => x == "Hello World"));
-        Console.WriteLine(result.IsOkAnd(x => x == "Hello World!"));
-        Console.WriteLine(result.IsErrorAnd(x => x == "Hello World!"));
     }
 }
 
