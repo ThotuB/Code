@@ -1,15 +1,12 @@
 let jspdf = document.createElement( "script" );
+jspdf.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js' ;
 
 jspdf.onload = function () {
-    let pdf = new jsPDF({
-        orientation: "landscape",
-        unit: "px",
-        format: [788, 420]
-    });
+    let pdf = new jsPDF();
     let elements = document.getElementsByTagName( "img" );
 
-    for (let i = 0; i < elements.length; i++) {
-        let img = elements[i];
+    // let index = 0;
+    for (let img of elements) {
         if (!/^blob:/.test(img.src)) {
             continue ;
         }
@@ -20,15 +17,19 @@ jspdf.onload = function () {
             .getContext( "2d" )
             .drawImage(img, 0, 0, img.width, img.height);
 
-        let imgData = canvasElement.toDataURL("image/jpeg" , 1.0);
-        pdf.addImage(imgData, 'JPEG' , 0, 0);
+        var image = canvasElement.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
 
-        if (i < elements.length - 1) {
-            pdf.addPage();
-        }
+        window.location.href = image; // it will save locally
+            
+//         let imgData = canvasElement.toDataURL("image/jpeg" , 1.0);
+//         pdf.addImage(imgData, 'JPEG' , 0, 0);
+// 
+//         if (index < elements.length - 1) {
+//             pdf.addPage();
+//         }
+//         index++;
     }
     pdf.save( "download.pdf" );
 };
 
-jspdf.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js' ;
 document.body.appendChild(jspdf);
